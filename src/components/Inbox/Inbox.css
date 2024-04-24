@@ -1,0 +1,24 @@
+.inboxStyle {
+    border: 3px inset rgb(87, 3, 87);
+    padding: 0 8px;
+    border-radius: 1%;
+    background: rgb(226, 217, 226);
+    display: flex;
+}
+
+.inboxStyle div h3 {
+    background-color: rgb(245, 239, 250);
+    margin-bottom: 6px;
+    padding: 25px;
+    margin-right: 2px;
+    margin-left: 8px;
+}
+
+.inboxMessage {
+    background-color: rgb(245, 239, 250);
+    margin: 19px 0 10px 19px;
+    padding: 30px;
+    align-items: center;
+    border: none;
+    font-size: 1rem;
+}
