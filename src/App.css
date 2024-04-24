@@ -1,0 +1,72 @@
+#root {
+  width: 1280px;
+  margin: 0 auto;
+  margin-bottom: 150px;
+}
+
+h1 {
+  position: relative;
+  text-align: center;
+}
+
+h1::after:not(footer h1) {
+  content: "";
+  width: 8%;
+  height: 2px;
+  border: 3px solid rgb(87, 3, 87);
+  position: absolute;
+  left: 45%;
+  bottom: 6%;
+}
+
+h3 {
+  font-weight: normal;
+}
+
+h3 span:not(.messageStyle, .truncate-overflow) {
+  font-weight: bold;
+}
+
+input, textarea {
+  background-color: rgb(245, 239, 250);
+}
+
+input {
+  margin-top: 1.25em;
+  height: 2rem;
+  padding-left: 6px;
+}
+
+textarea {
+  border: 2px inset light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+}
+
+input::placeholder, textarea::placeholder {
+  color: #000;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+textarea {
+  font-family: Arial, Helvetica, sans-serif;
+  padding-top: 8px;
+  padding-left: 8px;
+}
+
+.articleStyle {
+  border: 3px inset rgb(87, 3, 87);
+  padding: 0 8px;
+  border-radius: 1%;
+  background: rgb(226, 217, 226);
+  margin-bottom: 30px;
+  display: flex;
+}
+
+.articleImage {
+  margin: 15px;
+}
+
+#contactForm, #articleForm {
+  border: 3px solid transparent;
+  background: rgb(226, 217, 226);
+  padding: 3%;
+}
