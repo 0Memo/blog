@@ -13,9 +13,9 @@ export default function BlogPage(props:BlogPageProp){
 
     return(
         <>
-            <h1>Tous les articles du plus récent au plus ancien</h1>
+            <h1 className="text-2xl text-center mb-8">Tous les articles du plus récent au plus ancien</h1>
             <br />
-            <Blog articles={articles}/>
+            <Blog articles={articles} />
         </>
     )
 }

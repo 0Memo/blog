@@ -1,5 +1,5 @@
 import './App.css'
-import Navbar from './components/Navbar/Navbar';
+import NavbarComponent from './components/Navbar/NavbarComponent';
 import Footer from './components/Footer/Footer';
 import { Route, Routes } from 'react-router-dom';
 import NotFoundPage from './services/utils/NotFoundPage';
@@ -21,7 +21,7 @@ function App() {
 
   return (
     <>
-      <Navbar />
+      <NavbarComponent />
         <Routes>
             <Route path="/" element={ <HomePage articles={articles} /> } />
 

@@ -3,6 +3,7 @@ import { ContactFormInterface } from "../../services/interfaces/ContactForm";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useState } from 'react';
+import { Button, Card, TextInput, Textarea } from "flowbite-react";
 
 interface ContactFormProp {
     handleSubmitContactForm: (contactForm: ContactFormInterface) => void;
@@ -67,58 +68,67 @@ export default function ContactForm(props:ContactFormProp){
     return(
         <>
             <div>
-                <h1 className="contactFormTitle">Nous contacter</h1>
-                <form id="contactForm" onSubmit={formik.handleSubmit}>
+                <h1 className="text-center mb-5">Nous contacter</h1>
 
-                    <input 
-                        onChange={formik.handleChange}
-                        type="text"
-                        className=""
-                        name="name"
-                        id="name"
-                        placeholder="Votre nom..."
-                        value={ formik.values.name }
-                    />
-                    <small>{formik.errors.name}</small>
-                    <br />
-                    <br />
 
-                    <input
-                        onChange={formik.handleChange}
-                        type="text"
-                        className=""
-                        name="topic"
-                        id="topic"
-                        placeholder="Sujet..."
-                        value={ formik.values.topic }
-                    />
-                    <small>{formik.errors.topic}</small>
-                    <br />
-                    <br />
-
-                    <textarea
-                        onChange={formik.handleChange}
-                        name="message"
-                        id="message"
-                        placeholder="Votre message..."
-                        value={ formik.values.message }
-                    >
-                    </textarea>
-                    <small>{formik.errors.message}</small>
-                    <br />
-                    <input
-                        type="hidden"
-                        className=""
-                        name="date"
-                        id="date"
-                        value={ formik.values.date }
-                    />
-                    <input
-                        type="submit"
-                        value="Envoyer"
-                        className="btn btn-secondary"
-                    />
-                </form>
+                <div className="flex justify-center items-center">
+                    <Card className="w-96 bg-gray-50">
+                        <form id="contactForm" onSubmit={formik.handleSubmit}>
+                        
+                            <TextInput
+                                id="name"
+                                type="text"
+                                name="name"
+                                placeholder="Votre nom..."
+                                onChange={formik.handleChange}
+                                value={ formik.values.name }
+                                helperText={
+                                    <>
+                                    <span className="font-medium">{formik.errors.name}</span>
+                                    </>
+                                }
+                            />
+                            <TextInput
+                                id="topic"
+                                type="text"
+                                name="topic"
+                                placeholder="Sujet..."
+                                onChange={formik.handleChange}
+                                value={ formik.values.topic }
+                                helperText={
+                                    <>
+                                    <span className="font-medium">{formik.errors.topic}</span>
+                                    </>
+                                }
+                            />
+                            <Textarea
+                                id="message"
+                                name="message"
+                                placeholder="Votre messag..."
+                                onChange={formik.handleChange}
+                                value={ formik.values.message }
+                                rows={4}
+                                helperText={
+                                    <>
+                                    <span className="font-medium">{formik.errors.message}</span>
+                                    </>
+                                }
+                            />
+                            <TextInput
+                                type="hidden"
+                                id="date"
+                                name="date"
+                                value={ formik.values.date }
+                            />
+                            <Button
+                                className="bg-violet-900"
+                                type="submit"
+                            >
+                                Envoyer
+                            </Button>
+                        </form>
+                    </Card>
+                </div>
             </div>
             
         </>

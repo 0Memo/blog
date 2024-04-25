@@ -3,6 +3,7 @@ import './Article.css';
 import { ArticleInterface } from '../../services/interfaces/Article';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { Card, Button, TextInput, Textarea } from "flowbite-react";
 
 interface ArticleProp {
     handleSubmitArticle: (article:ArticleInterface) => void;
@@ -57,61 +58,65 @@ export default function ArticlePage(props:ArticleProp){
 
     return(
         <>
-            <h1>Ajouter un article</h1>            
+            <h1 className="text-2xl text-center mb-8">Ajouter un article</h1>            
 
-            <div>
-                <form id="articleForm" onSubmit={formik.handleSubmit}>
-                    <input
-                        onChange={formik.handleChange}
-                        type="text"
-                        id="authorName"
-                        name="authorName"
-                        placeholder="Nom de l'auteur..."
-                        value={ formik.values.authorName }
-                    />
-                    <small>{formik.errors.authorName}</small>
-
-                    <br />
-                    <br />
-                    <input
-                        onChange={formik.handleChange}
-                        type="text"
-                        id="title"
-                        name="title"
-                        placeholder="Titre de l'article..."
-                        value={ formik.values.title }
-                    />
-                    <small>{formik.errors.title}</small>
-
-                    <br />
-                    <br />
-                    <textarea
-                        onChange={formik.handleChange}
-                        name="description"
-                        id="descriprion"
-                        placeholder="Description.."
-                        value={ formik.values.description }
-                    >                        
-                    </textarea>
-                    <small>{formik.errors.description}</small>
-
-                    <br />
-                    <input 
-                        type="hidden"
-                        className=""
-                        name="date"
-                        id="date"
-                        value={ formik.values.date }
-                    />
-
-                    <br />
-                    <input
-                        type="submit"
-                        value="Ajouter"
-                        className="btn btn-secondary"
-                    />
-                    
-                </form>
+            <div className="flex justify-center items-center">
+                <Card className="w-96 bg-gray-50">
+                    <form id="articleForm" onSubmit={formik.handleSubmit} className="flex flex-col gap-4">
+                        <TextInput
+                            id="authorName"
+                            type="text"
+                            name="authorName"
+                            placeholder="Nom de l'auteur..."
+                            onChange={formik.handleChange}
+                            value={ formik.values.authorName }
+                            helperText={
+                                <>
+                                <span className="font-medium">{formik.errors.authorName}</span>
+                                </>
+                            }
+                        />
+                        <TextInput
+                            id="title"
+                            type="text"
+                            name="title"
+                            placeholder="Titre de l'article..."
+                            onChange={formik.handleChange}
+                            value={ formik.values.title }
+                            helperText={
+                                <>
+                                <span className="font-medium">{formik.errors.title}</span>
+                                </>
+                            }
+                        />
+                        <Textarea
+                            id="description"
+                            name="description"
+                            placeholder="Description..."
+                            onChange={formik.handleChange}
+                            value={ formik.values.description }
+                            rows={4}
+                            helperText={
+                                <>
+                                <span className="font-medium">{formik.errors.description}</span>
+                                </>
+                            }
+                        />
+                        <TextInput
+                            type="hidden"
+                            id="date"
+                            name="date"
+                            value={ formik.values.date }
+                        />
+                        <Button
+                            className="bg-violet-900"
+                            type="submit"
+                        >
+                            Ajouter
+                        </Button>
+                        
+                    </form>
+                </Card>
             </div>
         </>
     )

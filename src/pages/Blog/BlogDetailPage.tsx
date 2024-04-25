@@ -7,7 +7,7 @@ export default function BlogDetailPage(){
 
     return(
         <>
-            <h1>Blog Detail Page</h1>
+            <h1 className="text-2xl text-center">Blog Detail Page</h1>
             <h3><span>Post n° { idBlog }</span></h3>
             <h3><span>de l'utilisateur { idUser }</span></h3>
         </>

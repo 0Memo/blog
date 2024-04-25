@@ -4,6 +4,7 @@ import Inbox from "../../components/Inbox/Inbox";
 import { ContactFormInterface } from "../../services/interfaces/ContactForm";
 import './HomePage.css';
 import { ArticleInterface } from "../../services/interfaces/Article";
+import { Card } from "flowbite-react";
 
 /* import moment from "moment";
 import 'moment/locale/fr'; */
@@ -30,11 +31,11 @@ export default function HomePage(props:HomePageProp){
 
     return(
         <>
-            <h1>Page d'accueil</h1>
+            <h1 className="text-2xl text-center mb-8">Page d'accueil</h1>
 
             {/* <p>{m}</p> */}
 
-            <div className="messages">
+            <div className="flex justify-center items-center space-x-20">
                 <Inbox contactForms={contactForms} />
                 <ContactForm handleSubmitContactForm={handleSubmitContactForm} />
             </div>
@@ -44,20 +45,24 @@ export default function HomePage(props:HomePageProp){
                 ?
                     <div>
                         <div>
-                            <h3 className="latestArticle">Le dernier article</h3>
+                            <h3 className="text-center mt-8 mb-5">Le dernier article</h3>
                         </div>
-                        <div className="articleStyle">
-                            <div className="articleImage">
-                                <img src="https://craftypixels.com/placeholder-image/150x150/c0bcc2/fff&text=Placeholder" alt="placeholder" />
-                            </div>
-                            
-                            <div className="articleText">
-                                <h3><span>Nom de l'auteur :</span> {newestArticle.authorName}</h3>
-                                <h3><span>Titre :</span> {newestArticle.title}</h3>
-                                <h3><span>Description :</span> {newestArticle.description}</h3>
-                                <p>{newestArticle.date}</p>
-                            </div>
-                            <br />
+                        <div className="flex justify-center items-center">
+                            <Card
+                                className="max-w-sm mb-5 ojbect-none object-center bg-gray-50"
+                                imgAlt="Placeholder"
+                                imgSrc="https://craftypixels.com/placeholder-image/150x150/2e1065/fff&text=Placeholder"
+                                horizontal
+                            >
+                                
+                                <div className="articleText">
+                                    <h3><span>Nom de l'auteur :</span> {newestArticle.authorName}</h3>
+                                    <h3><span>Titre :</span> {newestArticle.title}</h3>
+                                    <h3><span>Description :</span> {newestArticle.description}</h3>
+                                    <p>{newestArticle.date}</p>
+                                </div>
+                                <br />
+                            </Card>
                         </div>
                     </div>
                 : ""

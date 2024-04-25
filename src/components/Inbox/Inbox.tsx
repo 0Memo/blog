@@ -1,4 +1,5 @@
 //import { Link } from 'react-router-dom';
+import { Button, Card } from 'flowbite-react';
 import { ContactFormInterface } from '../../services/interfaces/ContactForm';
 import './Inbox.css';
 import { useNavigate } from 'react-router-dom';
@@ -21,21 +22,33 @@ export default function Inbox(props:InboxProp){
 
     return(
         <>
-            <div className="inbox">
-                <h1>Boîte de réception des messages</h1>
-                <div className="inboxContainer">                
-                    {reversedContactForms.map((contactForm: ContactFormInterface) => (
-                        <div key={contactForm.id} className="inboxStyle">
-                            <div>
-                                <h3>{contactForm.name} - {contactForm.topic} - <span className="truncate-overflow">{contactForm.message}</span></h3>
-                                <p>{contactForm.date}</p>
+            <div>
+                <h1 className="text-center mb-5">Boîte de réception des messages</h1>             
+                    {
+                        reversedContactForms.map((contactForm: ContactFormInterface) => (
+                            <div className="flex justify-center items-center mb-4">
+                                <Card
+                                    className="w-80 bg-gray-50"      horizontal
+                                >
+                                    <div key={contactForm.id} className="flex space-x-8">
+                                        <div>
+                                            <h3 className="mb-3">{contactForm.name} - {contactForm.topic} <span>{contactForm.message}</span></h3>
+                                            <p>{contactForm.date}</p>
+                                        </div>
+                                        <div>
+                                            <Button
+                                                className="bg-violet-900 text-white"
+                                                outline
+                                                color="violet-900"
+                                                onClick={() => handleViewDetail(contactForm)}>
+                                                Voir
+                                            </Button>
+                                        </div>
+                                    </div>
+                                </Card>
                             </div>
-                            <div>
-                                <button className="inboxMessage" onClick={() => handleViewDetail(contactForm)}>Voir</button>
-                            </div>
-                        </div>
-                    ))}
-                </div>
+                        ))
+                    }
             </div>
         </>
     )
