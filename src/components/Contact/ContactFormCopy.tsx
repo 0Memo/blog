@@ -44,6 +44,7 @@ export default function ContactForm(props:ContactFormProp){
             );
             setCurrentId(idIncrement(currentId));
             formik.resetForm();
+            alert('Votre message a bien été envoyé!');
         },
     });
 
@@ -53,9 +54,10 @@ export default function ContactForm(props:ContactFormProp){
         const year = today.getFullYear();
         const date = today.getDate();
         const hour = today.getHours();
+        const formattedHour = hour < 10 ? `0${hour}` : hour;
         const min = today.getMinutes();
         const formattedMin = min < 10 ? `0${min}` : min;
-        return `le ${date}/${month}/${year} à ${hour}h${formattedMin}`;
+        return `le ${date}/${month}/${year} à ${formattedHour}h${formattedMin}`;
     };
 
     const idIncrement = (id:number) => {

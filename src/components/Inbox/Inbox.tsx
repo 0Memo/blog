@@ -23,17 +23,19 @@ export default function Inbox(props:InboxProp){
         <>
             <div className="inbox">
                 <h1>Boîte de réception des messages</h1>
-                {reversedContactForms.map((contactForm: ContactFormInterface) => (
-                    <div key={contactForm.id} className="inboxStyle">
-                        <div>
-                            <h3>{contactForm.name} - {contactForm.topic} - <span className="truncate-overflow">{contactForm.message}</span></h3>
-                            <p>{contactForm.date}</p>
+                <div className="inboxContainer">                
+                    {reversedContactForms.map((contactForm: ContactFormInterface) => (
+                        <div key={contactForm.id} className="inboxStyle">
+                            <div>
+                                <h3>{contactForm.name} - {contactForm.topic} - <span className="truncate-overflow">{contactForm.message}</span></h3>
+                                <p>{contactForm.date}</p>
+                            </div>
+                            <div>
+                                <button className="inboxMessage" onClick={() => handleViewDetail(contactForm)}>Voir</button>
+                            </div>
                         </div>
-                        <div>
-                            <button className="inboxMessage" onClick={() => handleViewDetail(contactForm)}>Voir</button>
-                        </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
         </>
     )
