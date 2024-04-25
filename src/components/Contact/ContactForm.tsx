@@ -9,6 +9,7 @@ interface ContactFormProp {
 export default function ContactForm(props:ContactFormProp){
     
     const [contactForms, setContactForms] = useState<ContactFormInterface>({
+        id: 0,
         name: "",
         topic: "",
         message: "",
@@ -34,6 +35,7 @@ export default function ContactForm(props:ContactFormProp){
         }
     
         const newContactForm: ContactFormInterface = {
+            id:  contactForms.id,
             name: contactForms.name,
             topic: contactForms.topic,
             message: contactForms.message,
@@ -42,6 +44,7 @@ export default function ContactForm(props:ContactFormProp){
 
         handleSubmitContactForm(newContactForm);
         setContactForms({
+            id: contactForms.id,
             name: "",
             topic: "",
             message: "",

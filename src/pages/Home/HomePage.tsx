@@ -38,25 +38,30 @@ export default function HomePage(props:HomePageProp){
                 <Inbox contactForms={contactForms} />
                 <ContactForm handleSubmitContactForm={handleSubmitContactForm} />
             </div>
-            <div>
-                <h3 className="latestArticle">Le dernier article</h3>
-            </div>
+            
             {
-                newestArticle && (
-                    <div className="articleStyle">
-                        <div className="articleImage">
-                            <img src="https://craftypixels.com/placeholder-image/150x150/c0bcc2/fff&text=Placeholder" alt="placeholder" />
+                newestArticle
+                ?
+                    <div>
+                        <div>
+                            <h3 className="latestArticle">Le dernier article</h3>
                         </div>
-                        
-                        <div className="articleText">
-                            <h3><span>Nom de l'auteur :</span> {newestArticle.authorName}</h3>
-                            <h3><span>Titre :</span> {newestArticle.title}</h3>
-                            <h3><span>Description :</span> {newestArticle.description}</h3>
-                            <p>{newestArticle.date}</p>
+                        <div className="articleStyle">
+                            <div className="articleImage">
+                                <img src="https://craftypixels.com/placeholder-image/150x150/c0bcc2/fff&text=Placeholder" alt="placeholder" />
+                            </div>
+                            
+                            <div className="articleText">
+                                <h3><span>Nom de l'auteur :</span> {newestArticle.authorName}</h3>
+                                <h3><span>Titre :</span> {newestArticle.title}</h3>
+                                <h3><span>Description :</span> {newestArticle.description}</h3>
+                                <p>{newestArticle.date}</p>
+                            </div>
+                            <br />
                         </div>
-                        <br />
                     </div>
-            )}
+                : ""
+            }
         </>
     )
 }
