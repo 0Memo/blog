@@ -1,7 +1,6 @@
 "use client";
 import { Navbar } from "flowbite-react";
 import { Link, Navigate} from 'react-router-dom';
-import './Navbar.css';
 
 
 export default function NavbarComponent(){

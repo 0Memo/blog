@@ -1,7 +1,6 @@
 //import { Link } from 'react-router-dom';
 import { Button, Card } from 'flowbite-react';
 import { ContactFormInterface } from '../../services/interfaces/ContactForm';
-import './Inbox.css';
 import { useNavigate } from 'react-router-dom';
 
 interface InboxProp {

@@ -2,7 +2,6 @@ import { useState } from "react";
 import ContactForm from "../../components/Contact/ContactFormCopy";
 import Inbox from "../../components/Inbox/Inbox";
 import { ContactFormInterface } from "../../services/interfaces/ContactForm";
-import './HomePage.css';
 import { ArticleInterface } from "../../services/interfaces/Article";
 import { Card } from "flowbite-react";
 

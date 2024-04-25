@@ -1,4 +1,3 @@
-import './ContactForm.css';
 import { ContactFormInterface } from "../../services/interfaces/ContactForm";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';

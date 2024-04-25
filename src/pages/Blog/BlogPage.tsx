@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import './Blog.css';
 import Blog from '../../components/Blog/Blog';
 import { ArticleInterface } from '../../services/interfaces/Article';
 
