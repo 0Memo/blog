@@ -27,8 +27,10 @@ export default function ContactForm(props:ContactFormProp){
             const year = today.getFullYear();
             const date = today.getDate();
             const hour = today.getHours();
+            const formattedHour = hour < 10 ? `0${hour}` : hour;
             const min = today.getMinutes();
-            return `le ${date}/${month}/${year} à ${hour}h${min}`;
+            const formattedMin = min < 10 ? `0${min}` : min;
+            return `le ${date}/${month}/${year} à ${formattedHour}h${formattedMin}`;
         }
     
         const newContactForm: ContactFormInterface = {

@@ -3,7 +3,6 @@ import './Article.css';
 import { ArticleInterface } from '../../services/interfaces/Article';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-//import { ArticlesProvider } from '../../hooks/ArticlesContext';
 
 interface ArticleProp {
     handleSubmitArticle: (article:ArticleInterface) => void;

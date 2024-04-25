@@ -6,8 +6,7 @@ interface ArticleProp {
     handleSubmitArticle: (article:ArticleInterface) => void;
 }
 
-export default function ArticlePage(props:ArticleProp){
-    
+export default function ArticlePage(props:ArticleProp){    
 
     const [articles, setArticles] = useState<ArticleInterface>({
         authorName: "",
@@ -27,9 +26,10 @@ export default function ArticlePage(props:ArticleProp){
             const year = today.getFullYear();
             const date = today.getDate();
             const hour = today.getHours();
+            const formattedHour = hour < 10 ? `0${hour}` : hour;
             const min = today.getMinutes();
             const formattedMin = min < 10 ? `0${min}` : min;
-            return `le ${date}/${month}/${year} à ${hour}h${formattedMin}`;
+            return `le ${date}/${month}/${year} à ${formattedHour}h${formattedMin}`;
         }
     
         const newArticle: ArticleInterface = {
