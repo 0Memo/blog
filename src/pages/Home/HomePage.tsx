@@ -34,9 +34,9 @@ export default function HomePage(props:HomePageProp){
 
             {/* <p>{m}</p> */}
 
-            <div className="flex justify-center items-center space-x-20">
-                <Inbox contactForms={contactForms} />
-                <ContactForm handleSubmitContactForm={handleSubmitContactForm} />
+            <div className="flex justify-evenly m-0">
+                    <Inbox contactForms={contactForms} />
+                    <ContactForm handleSubmitContactForm={handleSubmitContactForm} />
             </div>
             
             {
@@ -44,9 +44,9 @@ export default function HomePage(props:HomePageProp){
                 ?
                     <div>
                         <div>
-                            <h3 className="text-2xl text-center mt-8 mb-5 font-h3">Le dernier article</h3>
+                            <h3 className="text-2xl text-center mt-10 mb-5 font-h3">Le dernier article</h3>
                         </div>
-                        <div className="flex justify-center items-center mb-20">
+                        <div className="flex justify-center items-center mb-24">
                             <Card
                                 className="max-w-sm mb-5 ojbect-none object-center bg-gray-50"
                                 imgAlt="Placeholder"
