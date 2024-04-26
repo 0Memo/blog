@@ -55,10 +55,10 @@ export default function HomePage(props:HomePageProp){
                             >
                                 
                                 <div className="articleText">
-                                    <h3><span>Nom de l'auteur :</span> {newestArticle.authorName}</h3>
+                                    <h3 className="ftext-lg">Nom de l'auteur : <strong  className="font-h3">{newestArticle.authorName}</strong> </h3>
                                     <h3><span>Titre :</span> {newestArticle.title}</h3>
                                     <h3><span>Description :</span> {newestArticle.description}</h3>
-                                    <p>{newestArticle.date}</p>
+                                    <p className="mt-2"><i>{newestArticle.date}</i></p>
                                 </div>
                                 <br />
                             </Card>

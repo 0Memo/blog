@@ -22,8 +22,8 @@ export default function Blog(props:BlogProp){
                                 horizontal
                             >
                                 <div key={index} className="mt-4 text-lg font-bold tracking-tight text-gray-700 w-96">
-                                        <h3><span>Titre :</span> {article.title} - <span>Créé </span> {article.date}</h3>
-                                        <h3><span>Description :</span> {article.description}</h3>
+                                        <h3>Titre : {article.title} - Créé {article.date}</h3>
+                                        <h3>Description : {article.description}</h3>
                                     <br />
                                 </div>
                             </Card>
