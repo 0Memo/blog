@@ -57,7 +57,7 @@ export default function ArticlePage(props:ArticleProp){
 
     return(
         <>
-            <h1 className="text-2xl text-center mb-8">Ajouter un article</h1>            
+            <h1 className="text-4xl text-center mb-8 font-h1">Ajouter un article</h1>            
 
             <div className="flex justify-center items-center">
                 <Card className="w-96 bg-gray-50">

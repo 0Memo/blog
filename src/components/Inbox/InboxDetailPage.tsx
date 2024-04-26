@@ -1,4 +1,5 @@
 //import { useParams } from "react-router-dom";
+import { Card } from "flowbite-react";
 import { useLocation } from "react-router-dom";
 
 export default function InboxDetailPage() {
@@ -24,10 +25,18 @@ export default function InboxDetailPage() {
     // Render the component content
     return (
         <>
-            <h3>Message de <span>{name}</span></h3>
-            <p>Sujet: {topic}</p>
-            <p>Message: {message}</p>
-            <p>Envoyé {date}</p>
+            <div className="flex justify-center items-center mb-4">
+                <Card className="w-96 mt-8">
+                    <div>
+                        <h3 className="text-xl font-h1">Message de <strong>{name}</strong></h3>
+                        <br />
+                        <p>Sujet: {topic}</p>
+                        <p>Message: {message}</p>
+                        <br />
+                        <p><i>Envoyé {date}</i></p>
+                    </div>
+                </Card>
+            </div>
         </>
     );
 }

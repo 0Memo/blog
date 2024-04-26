@@ -67,7 +67,7 @@ export default function ContactForm(props:ContactFormProp){
     return(
         <>
             <div>
-                <h1 className="text-center mb-5">Nous contacter</h1>
+                <h1 className="text-2xl text-center mb-5 font-h1">Nous contacter</h1>
 
 
                 <div className="flex justify-center items-center">

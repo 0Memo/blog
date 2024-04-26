@@ -30,7 +30,7 @@ export default function HomePage(props:HomePageProp){
 
     return(
         <>
-            <h1 className="text-2xl text-center mb-8">Page d'accueil</h1>
+            <h1 className="text-4xl text-center mb-8 font-h1">Page d'accueil</h1>
 
             {/* <p>{m}</p> */}
 
@@ -44,7 +44,7 @@ export default function HomePage(props:HomePageProp){
                 ?
                     <div>
                         <div>
-                            <h3 className="text-center mt-8 mb-5">Le dernier article</h3>
+                            <h3 className="text-2xl text-center mt-8 mb-5 font-h3">Le dernier article</h3>
                         </div>
                         <div className="flex justify-center items-center">
                             <Card

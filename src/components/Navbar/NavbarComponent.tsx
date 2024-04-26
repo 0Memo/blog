@@ -13,13 +13,13 @@ export default function NavbarComponent(){
             {auth.token
             ?
                 
-            <div className="flex justify-center items-center space-x-80 mb-20">
+            <div className="flex justify-center items-center space-x-80 mt-4 mb-20 font-navbar">
                 <Navbar fluid rounded>
                     <Navbar.Collapse>
                         <div className="flex justify-center items-center space-x-80">
-                            <Link to="/" className="text-2xl">Accueil</Link>
-                            <Link to="/blog" className="text-2xl">Blog</Link>
-                            <Link to="/article" className="text-2xl">Article</Link>
+                            <Link to="/" className="text-4xl">Accueil</Link>
+                            <Link to="/blog" className="text-4xl">Blog</Link>
+                            <Link to="/article" className="text-4xl">Article</Link>
                         </div>
                     </Navbar.Collapse>
                 </Navbar>

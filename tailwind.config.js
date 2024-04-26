@@ -10,6 +10,14 @@ module.exports = {
     flowbite.content(),
   ],
   theme: {
+    fontFamily: {
+      navbar: ['Homemade Apple'],
+      h1: ['Kalam'],
+      h3: ['Kalam'],
+      footer: ['Kalam'],
+      'sans': ['ui-sans-serif', 'system-ui'],
+      'serif': ['ui-serif', 'Georgia'],
+    },
     extend: {},
   },
   plugins: [

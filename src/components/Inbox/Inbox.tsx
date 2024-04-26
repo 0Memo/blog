@@ -22,7 +22,7 @@ export default function Inbox(props:InboxProp){
     return(
         <>
             <div>
-                <h1 className="text-center mb-5">Boîte de réception des messages</h1>             
+                <h1 className="text-2xl text-center mb-5 font-h1">Boîte de réception des messages</h1>             
                     {
                         reversedContactForms.map((contactForm: ContactFormInterface) => (
                             <div className="flex justify-center items-center mb-4">
