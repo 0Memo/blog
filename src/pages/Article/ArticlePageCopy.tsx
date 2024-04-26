@@ -66,6 +66,7 @@ export default function ArticlePage(props:ArticleProp){
                             id="authorName"
                             type="text"
                             name="authorName"
+                            className="font-input"
                             placeholder="Nom de l'auteur..."
                             onChange={formik.handleChange}
                             value={ formik.values.authorName }
@@ -79,6 +80,7 @@ export default function ArticlePage(props:ArticleProp){
                             id="title"
                             type="text"
                             name="title"
+                            className="font-input"
                             placeholder="Titre de l'article..."
                             onChange={formik.handleChange}
                             value={ formik.values.title }
@@ -91,6 +93,7 @@ export default function ArticlePage(props:ArticleProp){
                         <Textarea
                             id="description"
                             name="description"
+                            className="font-input"
                             placeholder="Description..."
                             onChange={formik.handleChange}
                             value={ formik.values.description }
@@ -108,7 +111,7 @@ export default function ArticlePage(props:ArticleProp){
                             value={ formik.values.date }
                         />
                         <Button
-                            className="bg-violet-900"
+                            className="bg-violet-900 font-button"
                             type="submit"
                         >
                             Ajouter

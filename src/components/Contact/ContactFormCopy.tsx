@@ -78,6 +78,7 @@ export default function ContactForm(props:ContactFormProp){
                                 id="name"
                                 type="text"
                                 name="name"
+                                className="font-input"
                                 placeholder="Votre nom..."
                                 onChange={formik.handleChange}
                                 value={ formik.values.name }
@@ -91,6 +92,7 @@ export default function ContactForm(props:ContactFormProp){
                                 id="topic"
                                 type="text"
                                 name="topic"
+                                className="font-input"
                                 placeholder="Sujet..."
                                 onChange={formik.handleChange}
                                 value={ formik.values.topic }
@@ -103,7 +105,8 @@ export default function ContactForm(props:ContactFormProp){
                             <Textarea
                                 id="message"
                                 name="message"
-                                placeholder="Votre messag..."
+                                className="font-input"
+                                placeholder="Votre message..."
                                 onChange={formik.handleChange}
                                 value={ formik.values.message }
                                 rows={4}
@@ -120,7 +123,7 @@ export default function ContactForm(props:ContactFormProp){
                                 value={ formik.values.date }
                             />
                             <Button
-                                className="bg-violet-900"
+                                className="bg-violet-900 font-button"
                                 type="submit"
                             >
                                 Envoyer

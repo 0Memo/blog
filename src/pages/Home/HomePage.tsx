@@ -46,7 +46,7 @@ export default function HomePage(props:HomePageProp){
                         <div>
                             <h3 className="text-2xl text-center mt-8 mb-5 font-h3">Le dernier article</h3>
                         </div>
-                        <div className="flex justify-center items-center">
+                        <div className="flex justify-center items-center mb-20">
                             <Card
                                 className="max-w-sm mb-5 ojbect-none object-center bg-gray-50"
                                 imgAlt="Placeholder"
@@ -55,7 +55,7 @@ export default function HomePage(props:HomePageProp){
                             >
                                 
                                 <div className="articleText">
-                                    <h3 className="ftext-lg">Nom de l'auteur : <strong  className="font-h3">{newestArticle.authorName}</strong> </h3>
+                                    <h3 className="text-lg">Nom de l'auteur : <strong  className="font-h3">{newestArticle.authorName}</strong> </h3>
                                     <h3><span>Titre :</span> {newestArticle.title}</h3>
                                     <h3><span>Description :</span> {newestArticle.description}</h3>
                                     <p className="mt-2"><i>{newestArticle.date}</i></p>
