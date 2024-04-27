@@ -1,22 +1,25 @@
-export const useLocalStorage = (key: string) => {
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useState } from "react";
 
-    const win = window.localStorage;
-    const setItem = (value: unknown) => {
+export const useLocalStorage = (key: string, initialValue:any) => {
+
+    const [storedValue, setStoredValue] = useState(() => {
         try {
-            win.setItem(key, JSON.stringify(value));
-        } catch (error) {
-            console.log(error);
+            const item = window.localStorage.getItem(key);
+            return item ? JSON.parse(item) : initialValue;
+        } catch {
+            return initialValue
         }
-    };
+    })
 
-    const getItem = () => {
+    const setValue = (value:string) => {
         try {
-            const item = win.getItem(key);
-            return item ? JSON.parse(item) : undefined;            
+            setStoredValue(value)
+            window.localStorage.setItem(key, JSON.stringify(value))
         } catch (error) {
-            console.log(error);
+            console.error(error)
         }
-    };
+    }
 
-    return { setItem, getItem };
+    return [ storedValue, setValue ];
 };

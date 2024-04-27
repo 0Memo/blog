@@ -7,12 +7,37 @@ import PrivateRoute from './services/utils/PrivateRoute';
 import ArticlePage from './pages/Article/ArticlePageCopy';
 import { ArticleInterface } from './services/interfaces/Article';
 import BlogPage from './pages/Blog/BlogPage';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import InboxDetailPage from './components/Inbox/InboxDetailPage';
 
 function App() {
 
-  const [articles, setArticles] = useState<ArticleInterface[]>([]);
+  const [articles, setArticles] = useState<ArticleInterface[]>(() => {
+    const storedValues = localStorage.getItem("articleItem"); 
+    return storedValues ? JSON.parse(storedValues) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("articleItem", JSON.stringify(articles));
+  }, [articles])
+
+  const storesArticles = () => {
+    const storedValues = localStorage.getItem("articleItem");
+    if(!storedValues) { 
+      setArticles(articles)
+      return articles; 
+    }
+  
+      return JSON.parse(storedValues);
+    }
+
+    useEffect(() => { storesArticles()}, [])
+    
+    useEffect(() => {
+      if(!articles) return;
+      storesArticles();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [articles])
 
   function handleSubmitArticle(article:ArticleInterface):void{
     setArticles([ ...articles,  article]);
