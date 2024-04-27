@@ -29,15 +29,15 @@ function App() {
     }
   
       return JSON.parse(storedValues);
-    }
+  };
 
-    useEffect(() => { storesArticles()}, [])
-    
-    useEffect(() => {
-      if(!articles) return;
-      storesArticles();
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [articles])
+  useEffect(() => { storesArticles()}, []);
+  
+  useEffect(() => {
+    if(!articles) return;
+    storesArticles();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [articles]);
 
   function handleSubmitArticle(article:ArticleInterface):void{
     setArticles([ ...articles,  article]);

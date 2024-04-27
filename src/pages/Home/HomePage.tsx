@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ContactForm from "../../components/Contact/ContactFormCopy";
 import Inbox from "../../components/Inbox/Inbox";
 import { ContactFormInterface } from "../../services/interfaces/ContactForm";
@@ -21,7 +21,33 @@ export default function HomePage(props:HomePageProp){
     const reversedArticles = articles.slice().reverse();
     const newestArticle = reversedArticles[0];
 
-    const [contactForms, setContactForms] = useState<ContactFormInterface[]>([]);
+    const [contactForms, setContactForms] = useState<ContactFormInterface[]>(() => {
+        const storedValues = localStorage.getItem("contactFormItem"); 
+        return storedValues ? JSON.parse(storedValues) : [];
+    });
+
+    useEffect(() => {
+    localStorage.setItem("contactFormItem", JSON.stringify(contactForms));
+    }, [contactForms])
+
+    const storesContactForms = () => {
+    const storedValues = localStorage.getItem("contactFormItem");
+    if(!storedValues) { 
+        setContactForms(contactForms)
+        return articles; 
+    }
+    
+        return JSON.parse(storedValues);
+    };
+
+    useEffect(() => { storesContactForms()}, []);
+    
+    useEffect(() => {
+    if(!contactForms) return;
+    storesContactForms();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [contactForms]);
+
 
     
     function handleSubmitContactForm(contactForm:ContactFormInterface):void{
