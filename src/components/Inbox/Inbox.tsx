@@ -27,11 +27,12 @@ export default function Inbox(props:InboxProp){
                         reversedContactForms.map((contactForm: ContactFormInterface) => (
                             <div className="flex justify-center items-center mb-4">
                                 <Card
-                                    className="w-80 bg-gray-50"      horizontal
+                                    className="w-96 bg-gray-50 shadow-lg"
+                                    horizontal
                                 >
                                     <div key={contactForm.id} className="flex space-x-8">
                                         <div>
-                                            <h3 className="mb-3">{contactForm.name} - {contactForm.topic} <span>{contactForm.message}</span></h3>
+                                            <h3 className="mb-3"><strong className="font-h3 text-violet-900">{contactForm.name}</strong>  - {contactForm.topic} <span>{contactForm.message}</span></h3>
                                             <p>{contactForm.date}</p>
                                         </div>
                                         <div>

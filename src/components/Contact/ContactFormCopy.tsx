@@ -71,7 +71,7 @@ export default function ContactForm(props:ContactFormProp){
 
 
                 <div className="flex justify-center items-center">
-                    <Card className="w-96 bg-gray-50">
+                    <Card className="w-96 bg-gray-50 shadow-lg">
                         <form id="contactForm" onSubmit={formik.handleSubmit}>
                         
                             <TextInput
