@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 // import { useState } from 'react';
 import { Button, Card, TextInput, Textarea } from "flowbite-react";
 import { v4 as uuidv4 } from 'uuid';
+import { IoIosSend } from "react-icons/io";
 
 interface ContactFormProp {
     handleSubmitContactForm: (contactForm: ContactFormInterface) => void;
@@ -127,7 +128,7 @@ export default function ContactForm(props:ContactFormProp){
                                 className="bg-violet-900 font-button"
                                 type="submit"
                             >
-                                Envoyer
+                                Envoyer <IoIosSend className="mt-1 ml-1" />
                             </Button>
                         </form>
                     </Card>

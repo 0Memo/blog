@@ -3,6 +3,7 @@ import { ArticleInterface } from '../../services/interfaces/Article';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { Card, Button, TextInput, Textarea } from "flowbite-react";
+import { MdAddToPhotos } from "react-icons/md";
 
 interface ArticleProp {
     handleSubmitArticle: (article:ArticleInterface) => void;
@@ -114,7 +115,7 @@ export default function ArticlePage(props:ArticleProp){
                             className="bg-violet-900 font-button"
                             type="submit"
                         >
-                            Ajouter
+                            Ajouter <MdAddToPhotos className="mt-1 ml-1" />
                         </Button>
                         
                     </form>

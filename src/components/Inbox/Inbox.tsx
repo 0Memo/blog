@@ -2,6 +2,7 @@
 import { Button, Card } from 'flowbite-react';
 import { ContactFormInterface } from '../../services/interfaces/ContactForm';
 import { useNavigate } from 'react-router-dom';
+import { TbSquareRoundedPlus } from "react-icons/tb";
 
 interface InboxProp {
     contactForms: ContactFormInterface[];
@@ -41,7 +42,7 @@ export default function Inbox(props:InboxProp){
                                                 outline
                                                 color="violet-900"
                                                 onClick={() => handleViewDetail(contactForm)}>
-                                                Voir
+                                                Voir <TbSquareRoundedPlus className="mt-1 ml-2 scale-150" />
                                             </Button>
                                         </div>
                                     </div>
