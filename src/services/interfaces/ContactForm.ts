@@ -1,5 +1,5 @@
 export interface ContactFormInterface {
-    id: number;
+    id: string;
     name: string;
     topic: string;
     message: string;

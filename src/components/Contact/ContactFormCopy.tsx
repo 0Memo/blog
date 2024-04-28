@@ -1,8 +1,9 @@
 import { ContactFormInterface } from "../../services/interfaces/ContactForm";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { useState } from 'react';
+// import { useState } from 'react';
 import { Button, Card, TextInput, Textarea } from "flowbite-react";
+import { v4 as uuidv4 } from 'uuid';
 
 interface ContactFormProp {
     handleSubmitContactForm: (contactForm: ContactFormInterface) => void;
@@ -10,7 +11,7 @@ interface ContactFormProp {
 
 export default function ContactForm(props:ContactFormProp){
 
-    const [currentId, setCurrentId] = useState(0);
+    // const [currentId, setCurrentId] = useState(0);
     
     const handleSubmitContactForm = props.handleSubmitContactForm;
 
@@ -39,10 +40,10 @@ export default function ContactForm(props:ContactFormProp){
         onSubmit: (values) => {
             handleSubmitContactForm(
                 {
-                    ...values, id: idIncrement(currentId), date: getDate()
+                    ...values, id: uuidv4(), date: getDate()
                 }
             );
-            setCurrentId(idIncrement(currentId));
+            // setCurrentId(idIncrement(currentId));
             formik.resetForm();
             alert('Votre message a bien été envoyé!');
         },
@@ -60,9 +61,9 @@ export default function ContactForm(props:ContactFormProp){
         return `le ${date}/${month}/${year} à ${formattedHour}h${formattedMin}`;
     };
 
-    const idIncrement = (id:number) => {
+    /* const idIncrement = (id:number) => {
         return id + 1;
-    }
+    } */
     
     return(
         <>
