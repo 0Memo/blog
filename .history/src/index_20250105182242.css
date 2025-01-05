@@ -6,10 +6,7 @@
 @tailwind utilities;
 
 body {
-  background: url('./assets/backgrounds/background3.jpeg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  color: #fff;
+  background-color: green;
 }
 
 /* :root {

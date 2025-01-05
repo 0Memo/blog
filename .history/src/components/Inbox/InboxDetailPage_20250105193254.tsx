@@ -17,7 +17,7 @@ export default function InboxDetailPage() {
     
 
     if (!state || !state.contactForm) {
-        return <div>Erreur: Message non trouvé!</div>;
+        return <div>Erruerr: Message non trouvé!</div>;
     }
 
     const { name, topic, message, date } = state.contactForm;
@@ -28,12 +28,12 @@ export default function InboxDetailPage() {
             <div className="flex justify-center items-center mb-4">
                 <Card className="w-96 mt-8 shadow-lg border-2 border-r-violet-900">
                     <div>
-                        <h3 className="text-xl font-h3 text-slate-900">Message de <strong className="text-violet-900 border-b-4 border-violet-900">{name}</strong></h3>
+                        <h3 className="text-xl font-h3 text-violet-900">Message de <strong className="text-violet-900 border-b-4 border-violet-900">{name}</strong></h3>
                         <br />
-                        <p className='text-slate-900'>Sujet: {topic}</p>
-                        <p className='text-slate-900'>Message: {message}</p>
+                        <p className='text-black'>Sujet: {topic}</p>
+                        <p className='text-black'>Message: {message}</p>
                         <br />
-                        <p className='text-slate-900'><i>Envoyé {date}</i></p>
+                        <p className='text-black'><i>Envoyé {date}</i></p>
                     </div>
                 </Card>
             </div>

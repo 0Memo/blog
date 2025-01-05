@@ -81,7 +81,7 @@ export default function HomePage(props:HomePageProp){
                                 horizontal
                             >
                                 
-                                <div className="articleText text-slate-900">
+                                <div className="articleText">
                                     <h3 className="text-lg">Nom de l'auteur : <strong  className="font-h3 text-violet-900 ">{newestArticle.authorName}</strong> </h3>
                                     <h3><span>Titre :</span> {newestArticle.title}</h3>
                                     <h3><span>Description :</span> {newestArticle.description}</h3>

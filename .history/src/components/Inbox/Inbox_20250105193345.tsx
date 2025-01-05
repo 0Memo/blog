@@ -38,7 +38,7 @@ export default function Inbox(props:InboxProp){
                                         </div>
                                         <div>
                                             <Button
-                                                className="bg-violet-900 text-slate-900"
+                                                className="bg-violet-900 text-white"
                                                 outline
                                                 color="violet-900"
                                                 onClick={() => handleViewDetail(contactForm)}>

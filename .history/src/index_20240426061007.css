@@ -5,13 +5,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  background: url('./assets/backgrounds/background3.jpeg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  color: #fff;
-}
-
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

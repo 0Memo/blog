@@ -33,12 +33,12 @@ export default function Inbox(props:InboxProp){
                                 >
                                     <div key={contactForm.id} className="flex space-x-8">
                                         <div>
-                                            <h3 className="mb-3"><strong className="font-h3 text-violet-900">{contactForm.name}</strong>  - {contactForm.topic} <span className='text-slate-900'>{contactForm.message}</span></h3>
-                                            <p className='text-slate-900'>{contactForm.date}</p>
+                                            <h3 className="mb-3"><strong className="font-h3 text-violet-900">{contactForm.name}</strong>  - {contactForm.topic} <span>{contactForm.message}</span></h3>
+                                            <p>{contactForm.date}</p>
                                         </div>
                                         <div>
                                             <Button
-                                                className="bg-violet-900 text-slate-900"
+                                                className="bg-violet-900 text-dark"
                                                 outline
                                                 color="violet-900"
                                                 onClick={() => handleViewDetail(contactForm)}>

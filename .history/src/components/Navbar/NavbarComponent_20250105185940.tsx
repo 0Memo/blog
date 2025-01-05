@@ -15,7 +15,7 @@ export default function NavbarComponent(){
                 
             <div className="flex justify-center items-center space-x-80 mt-4 mb-40 sm:mb-20 font-navbar">
                 <Navbar fluid rounded className="bg-transparent mb-5 relative h-12 sm:h-auto w-12 sm:w-auto">
-                    <Navbar.Toggle className="absolute active:bg-transparent focus:bg-transparent focus:outline-none focus:ring-0 active:ring-0 border-none shadow-none left-0 top-0 h-16 sm:h-auto w-16 sm:w-auto" />
+                    <Navbar.Toggle className="bg-transparent absolute active:bg-transparent focus:bg-transparent outline-none active:outline-none focus:outline-none active:border-none focus:border-none left-0 top-0 h-16 sm:h-auto w-16 sm:w-auto" />
                     <Navbar.Collapse>
                         <div className="flex flex-col sm:flex-row justify-center items-center sm:space-x-80 mt-14 sm:mt-0">
                             <Link to="/" className="text-lg sm:text-4xl mb-2 sm:mb-0 active">Accueil</Link>

@@ -31,7 +31,6 @@ function App() {
       return JSON.parse(storedValues);
   };
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => { storesArticles()}, []);
   
   useEffect(() => {

@@ -17,7 +17,7 @@ export default function InboxDetailPage() {
     
 
     if (!state || !state.contactForm) {
-        return <div>Erreur: Message non trouvé!</div>;
+        return <div>Erruerr: Message non trouvé!</div>;
     }
 
     const { name, topic, message, date } = state.contactForm;
