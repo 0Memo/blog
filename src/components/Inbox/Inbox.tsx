@@ -38,11 +38,12 @@ export default function Inbox(props:InboxProp){
                                         </div>
                                         <div>
                                             <Button
-                                                className="bg-violet-900 text-slate-900"
-                                                outline
-                                                color="violet-900"
+                                                className="!bg-violet-900 border-2 !text-white font-button hover:!bg-white hover:!text-violet-900 focus:!bg-white focus:!text-violet-900 active:!bg-white active:!text-violet-900 hover:border hover:border-2 hover:border-violet-900 focus:outline-0 focus:ring-0"
                                                 onClick={() => handleViewDetail(contactForm)}>
-                                                Voir <TbSquareRoundedPlus className="mt-1 ml-2 scale-150" />
+                                                <div className="flex items-center justify-center">
+                                                    <span className="text-base leading-[0.8rem]">Voir</span>
+                                                    <TbSquareRoundedPlus className="ml-2 scale-150" />
+                                                </div>
                                             </Button>
                                         </div>
                                     </div>

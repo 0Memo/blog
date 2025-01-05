@@ -125,10 +125,13 @@ export default function ContactForm(props:ContactFormProp){
                                 value={ formik.values.date }
                             />
                             <Button
-                                className="bg-violet-900 font-button"
+                                className="!bg-violet-900 border-2 !text-white font-button hover:!bg-white hover:!text-violet-900 focus:!bg-white focus:!text-violet-900 active:!bg-white active:!text-violet-900 hover:border hover:border-2 hover:border-violet-900 focus:outline-0 focus:ring-0"
                                 type="submit"
                             >
-                                Envoyer <IoIosSend className="mt-1 ml-1" />
+                                <div className="flex items-center justify-center">
+                                    <span className="text-base leading-[0.8rem]">Envoyer</span>
+                                    <IoIosSend className="ml-2 scale-150" />
+                                </div>
                             </Button>
                         </form>
                     </Card>
