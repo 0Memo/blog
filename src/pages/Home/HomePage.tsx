@@ -79,8 +79,7 @@ export default function HomePage(props:HomePageProp){
                                 imgAlt="Placeholder"
                                 imgSrc="https://craftypixels.com/placeholder-image/150x150/2e1065/fff&text=Placeholder"
                                 horizontal
-                            >
-                                
+                            >                                
                                 <div className="articleText text-slate-900">
                                     <h3 className="text-lg">Nom de l'auteur : <strong  className="font-h3 text-violet-900 ">{newestArticle.authorName}</strong> </h3>
                                     <h3><span>Titre :</span> {newestArticle.title}</h3>
