@@ -22,3 +22,18 @@
     border: none;
     font-size: 1rem;
 } */
+
+.button {
+    background-color: transparent !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.button div:hover {
+    background-color: #fff !important;
+}
+
+.button div:hover .send, .button div:hover .envelop {
+    color: #6b21a8 !important;
+}

@@ -3,6 +3,7 @@ import { Button, Card } from 'flowbite-react';
 import { ContactFormInterface } from '../../services/interfaces/ContactForm';
 import { useNavigate } from 'react-router-dom';
 import { TbSquareRoundedPlus } from "react-icons/tb";
+import './Inbox.css';
 
 interface InboxProp {
     contactForms: ContactFormInterface[];
@@ -38,12 +39,16 @@ export default function Inbox(props:InboxProp){
                                         </div>
                                         <div>
                                             <Button
-                                                className="!bg-violet-900 border-2 !text-white font-button hover:!bg-white hover:!text-violet-900 focus:!bg-white focus:!text-violet-900 active:!bg-white active:!text-violet-900 hover:border hover:border-2 hover:border-violet-900 focus:outline-0 focus:ring-0"
+                                                className="button"
                                                 onClick={() => handleViewDetail(contactForm)}>
-                                                <div className="flex items-center justify-center">
-                                                    <span className="text-base leading-[0.8rem]">Voir</span>
-                                                    <TbSquareRoundedPlus className="ml-2 scale-150" />
-                                                </div>
+                                                    <div className='hover:before:bg-transparent hover:before:border-2 hover:before:border-violet-900 before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-violet-900 relative flex gap-2 p-1 mt-2'>
+                                                        <span className="relative text-white m-1 send">
+                                                            Voir
+                                                        </span>
+                                                        <span className="relative text-white m-1 envelop">
+                                                            <TbSquareRoundedPlus className="ml-2 scale-150" />
+                                                        </span>
+                                                    </div>
                                             </Button>
                                         </div>
                                     </div>

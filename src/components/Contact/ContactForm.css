@@ -11,3 +11,24 @@
     margin: 20px;
     padding: 0 20px;
 } */
+
+#topic:focus, #name:focus, #message:focus {
+    border: solid 1px #6b21a8 !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.button {
+    background-color: transparent !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.button div:hover {
+    background-color: #fff !important;
+}
+
+.button div:hover .send, .button div:hover .envelop {
+    color: #6b21a8 !important;
+}

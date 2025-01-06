@@ -4,3 +4,24 @@
     width: 50%;
     margin: 0 auto;
 } */
+
+#authorName:focus, #title:focus, #description:focus {
+    border: solid 1px #6b21a8 !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.button {
+    background-color: transparent !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.button div:hover {
+    background-color: #fff !important;
+}
+
+.button div:hover .send, .button div:hover .envelop {
+    color: #6b21a8 !important;
+}

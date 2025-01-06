@@ -4,6 +4,10 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { Card, Button, TextInput, Textarea } from "flowbite-react";
 import { MdAddToPhotos } from "react-icons/md";
+import { TbFileDescription } from "react-icons/tb";
+import { PiArticleNyTimesDuotone } from "react-icons/pi";
+import { CiPen } from "react-icons/ci";
+import './Article.css';
 
 interface ArticleProp {
     handleSubmitArticle: (article:ArticleInterface) => void;
@@ -71,6 +75,7 @@ export default function ArticlePage(props:ArticleProp){
                             placeholder="Nom de l'auteur..."
                             onChange={formik.handleChange}
                             value={ formik.values.authorName }
+                            icon={CiPen}
                             helperText={
                                 <>
                                 <span className="font-medium">{formik.errors.authorName}</span>
@@ -85,26 +90,32 @@ export default function ArticlePage(props:ArticleProp){
                             placeholder="Titre de l'article..."
                             onChange={formik.handleChange}
                             value={ formik.values.title }
+                            icon={PiArticleNyTimesDuotone}
                             helperText={
                                 <>
                                 <span className="font-medium">{formik.errors.title}</span>
                                 </>
                             }
                         />
-                        <Textarea
-                            id="description"
-                            name="description"
-                            className="font-input"
-                            placeholder="Description..."
-                            onChange={formik.handleChange}
-                            value={ formik.values.description }
-                            rows={4}
-                            helperText={
-                                <>
-                                <span className="font-medium">{formik.errors.description}</span>
-                                </>
-                            }
-                        />
+                        <div className='relative'>
+                            <Textarea
+                                id="description"
+                                name="description"
+                                className="font-input pl-10"
+                                placeholder="Description..."
+                                onChange={formik.handleChange}
+                                value={ formik.values.description }
+                                rows={4}
+                                helperText={
+                                    <>
+                                    <span className="font-medium">{formik.errors.description}</span>
+                                    </>
+                                }
+                            />
+                            <div className='absolute left-2 top-2 text-gray-500'>
+                                <TbFileDescription />
+                            </div>
+                        </div>
                         <TextInput
                             type="hidden"
                             id="date"
@@ -112,10 +123,17 @@ export default function ArticlePage(props:ArticleProp){
                             value={ formik.values.date }
                         />
                         <Button
-                            className="bg-violet-900 font-button"
+                            className="button"
                             type="submit"
                         >
-                            Ajouter <MdAddToPhotos className="mt-1 ml-1" />
+                            <div className='hover:before:bg-transparent hover:before:border-2 hover:before:border-violet-900 before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-violet-900 relative flex gap-2 p-1 mt-2'>
+                                <span className="relative text-white m-1 send">
+                                    Ajouter
+                                </span>
+                                <span className="relative text-white m-1 envelop">
+                                    <MdAddToPhotos className="ml-2 scale-150" />
+                                </span>
+                            </div>
                         </Button>
                         
                     </form>

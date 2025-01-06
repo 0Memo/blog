@@ -5,6 +5,10 @@ import * as Yup from 'yup';
 import { Button, Card, TextInput, Textarea } from "flowbite-react";
 import { v4 as uuidv4 } from 'uuid';
 import { IoIosSend } from "react-icons/io";
+import { ImUser } from "react-icons/im";
+import { ImQuestion } from "react-icons/im";
+import { ImPencil } from "react-icons/im";
+import './ContactForm.css';
 
 interface ContactFormProp {
     handleSubmitContactForm: (contactForm: ContactFormInterface) => void;
@@ -80,10 +84,12 @@ export default function ContactForm(props:ContactFormProp){
                                 id="name"
                                 type="text"
                                 name="name"
+                                sizing="sm"
                                 className="font-input"
                                 placeholder="Votre nom..."
                                 onChange={formik.handleChange}
                                 value={ formik.values.name }
+                                icon={ImUser}
                                 helperText={
                                     <>
                                     <span className="font-medium">{formik.errors.name}</span>
@@ -94,30 +100,37 @@ export default function ContactForm(props:ContactFormProp){
                                 id="topic"
                                 type="text"
                                 name="topic"
+                                sizing="sm"
                                 className="font-input"
                                 placeholder="Sujet..."
                                 onChange={formik.handleChange}
                                 value={ formik.values.topic }
+                                icon={ImQuestion}
                                 helperText={
                                     <>
                                     <span className="font-medium">{formik.errors.topic}</span>
                                     </>
                                 }
                             />
-                            <Textarea
-                                id="message"
-                                name="message"
-                                className="font-input"
-                                placeholder="Votre message..."
-                                onChange={formik.handleChange}
-                                value={ formik.values.message }
-                                rows={4}
-                                helperText={
-                                    <>
-                                    <span className="font-medium">{formik.errors.message}</span>
-                                    </>
-                                }
-                            />
+                            <div className="relative">
+                                <Textarea
+                                    id="message"
+                                    name="message"
+                                    className="font-input pl-10"
+                                    placeholder="Votre message..."
+                                    onChange={formik.handleChange}
+                                    value={formik.values.message}
+                                    rows={4}
+                                    helperText={
+                                        <>
+                                            <span className="font-medium">{formik.errors.message}</span>
+                                        </>
+                                    }
+                                />
+                                <div className="absolute left-2 top-2 text-gray-500">
+                                    <ImPencil className="text-2xl" />
+                                </div>
+                            </div>
                             <TextInput
                                 type="hidden"
                                 id="date"
@@ -125,14 +138,28 @@ export default function ContactForm(props:ContactFormProp){
                                 value={ formik.values.date }
                             />
                             <Button
-                                className="!bg-violet-900 border-2 !text-white font-button hover:!bg-white hover:!text-violet-900 focus:!bg-white focus:!text-violet-900 active:!bg-white active:!text-violet-900 hover:border hover:border-2 hover:border-violet-900 focus:outline-0 focus:ring-0"
+                                className="button"
                                 type="submit"
                             >
-                                <div className="flex items-center justify-center">
-                                    <span className="text-base leading-[0.8rem]">Envoyer</span>
-                                    <IoIosSend className="ml-2 scale-150" />
+                                <div className='hover:before:bg-transparent hover:before:border-2 hover:before:border-violet-900 before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-violet-900 relative flex gap-2 p-1 mt-2'>
+                                    <span className="relative text-white m-1 send">
+                                        Envoyer
+                                    </span>
+                                    <span className="relative text-white m-1 envelop">
+                                        <IoIosSend className="ml-2 scale-150" />
+                                    </span>
                                 </div>
                             </Button>
+
+
+                            {/* <span className="button-wrapper relative block h-16">
+                                <Button className="relative flex gap-2 flex-shrink-0 !bg-violet-900 border-2 !text-white font-button hover:!bg-white hover:!text-violet-900 focus:!bg-white focus:!text-violet-900 active:!bg-white active:!text-violet-900 hover:border hover:border-2 hover:border-violet-900 focus:outline-0 focus:ring-0">
+                                    <div className="flex items-center justify-center">
+                                        <span className="relative text-white --m-2 text-base leading-[0.8rem]">Envoyer</span>
+                                        <IoIosSend className="ml-2 scale-150" />
+                                    </div>
+                                </Button>
+                            </span> */}
                         </form>
                     </Card>
                 </div>
