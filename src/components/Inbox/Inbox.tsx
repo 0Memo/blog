@@ -4,12 +4,14 @@ import { ContactFormInterface } from '../../services/interfaces/ContactForm';
 import { useNavigate } from 'react-router-dom';
 import { TbSquareRoundedPlus } from "react-icons/tb";
 import './Inbox.css';
+import { useTranslation } from "react-i18next";
 
 interface InboxProp {
     contactForms: ContactFormInterface[];
 }
 
 export default function Inbox(props:InboxProp){
+    const { t } = useTranslation();
 
     const navigate = useNavigate();
 
@@ -24,7 +26,7 @@ export default function Inbox(props:InboxProp){
     return(
         <>
             <div>
-                <h1 className="text-2xl text-center mb-5 font-h1">Boîte de réception des messages</h1>             
+                <h1 className="text-2xl text-center mb-5 font-h1">{t("inbox.main")}</h1>             
                     {
                         reversedContactForms.map((contactForm: ContactFormInterface) => (
                             <div className="flex justify-center items-center mb-4">
@@ -43,7 +45,7 @@ export default function Inbox(props:InboxProp){
                                                 onClick={() => handleViewDetail(contactForm)}>
                                                     <div className='hover:before:bg-transparent hover:before:border-2 hover:before:border-violet-900 before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-violet-900 relative flex gap-2 p-1 mt-2'>
                                                         <span className="relative text-white m-1 send">
-                                                            Voir
+                                                            {t("inbox.more")}
                                                         </span>
                                                         <span className="relative text-white m-1 envelop">
                                                             <TbSquareRoundedPlus className="ml-2 scale-150" />

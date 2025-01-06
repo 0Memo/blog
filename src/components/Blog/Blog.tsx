@@ -1,12 +1,14 @@
 "use client";
 import { ArticleInterface } from "../../services/interfaces/Article";
 import { Card } from "flowbite-react";
+import { useTranslation } from "react-i18next";
 
 interface BlogProp {
     articles: ArticleInterface[];
 }
 
 export default function Blog(props:BlogProp){
+    const { t } = useTranslation();
 
     const articles = props.articles.slice().reverse();
 
@@ -22,8 +24,8 @@ export default function Blog(props:BlogProp){
                                 horizontal
                             >
                                 <div key={index} className="text-md sm:text-lg tracking-tight text-gray-700 w-30 sm:w-44">
-                                        <h3 className="font-h3">Titre : {article.title} - Créé {article.date}</h3>
-                                        <h3 className="font-h3">Description : {article.description}</h3>
+                                        <h3 className="font-h3">{t("blog.title")} {article.title} - {t("blog.created")} {article.date}</h3>
+                                        <h3 className="font-h3">{t("blog.description")} {article.description}</h3>
                                     <br />
                                 </div>
                             </Card>

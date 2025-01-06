@@ -8,19 +8,25 @@
         "title": "Página principal",
         "lastArticle": {
             "title": "El último artículo",
-            "authorName": "Nombre del autor:",
-            "articleTitle": "Título:",
-            "articleDescription": "Descripción:"
+            "authorName": "Nombre del autor :",
+            "articleTitle": "Título :",
+            "articleDescription": "Descripción :"
         }
     },
     "inbox": {
         "main": "Bandeja de entrada",
         "more": "Más",
         "from": "Mensaje de",
-        "subject": "Asunto:",
-        "message": "Mensaje:",
+        "subject": "Asunto :",
+        "message": "Mensaje :",
         "sent": "Enviado",
         "error": "Error: ¡Mensaje no encontrado!"
+    },
+    "blog": {
+        "list": "Todos los artículos del más reciente al más antiguo",
+        "title": "Título :",
+        "created": "Creado ",
+        "description": "Descripción :"
     },
     "contactForm": {
         "ContactUs": "Contáctanos",

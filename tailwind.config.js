@@ -11,7 +11,7 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      navbar: ['Homemade Apple'],
+      navbar: ['Kalam'],
       h1: ['Kalam'],
       h3: ['Kalam'],
       input: ['Kalam'],

@@ -22,6 +22,12 @@
         "sent": "Envoyé",
         "error": "Erreur : Message introuvable !"
     },
+    "blog": {
+        "list": "Tous les articles du plus récent au plus ancien",
+        "title": "Titre :",
+        "created": "Créé ",
+        "description": "Description :"
+    },
     "contactForm": {
         "ContactUs": "Contactez-nous",
         "name": "Votre nom...",

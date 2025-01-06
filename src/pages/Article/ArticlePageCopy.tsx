@@ -8,13 +8,14 @@ import { TbFileDescription } from "react-icons/tb";
 import { PiArticleNyTimesDuotone } from "react-icons/pi";
 import { CiPen } from "react-icons/ci";
 import './Article.css';
+import { useTranslation } from "react-i18next";
 
 interface ArticleProp {
     handleSubmitArticle: (article:ArticleInterface) => void;
 }
 
 export default function ArticlePage(props:ArticleProp){
-    
+    const { t } = useTranslation();
     const handleSubmitArticle = props.handleSubmitArticle;
 
     const formik = useFormik({
@@ -62,7 +63,7 @@ export default function ArticlePage(props:ArticleProp){
 
     return(
         <>
-            <h1 className="text-4xl text-center mb-8 font-h1">Ajouter un article</h1>            
+            <h1 className="text-4xl text-center mb-8 font-h1">{t("article.add")}</h1>            
 
             <div className="flex justify-center items-center">
                 <Card className="w-96 bg-gray-50">
@@ -72,7 +73,7 @@ export default function ArticlePage(props:ArticleProp){
                             type="text"
                             name="authorName"
                             className="font-input"
-                            placeholder="Nom de l'auteur..."
+                            placeholder={t("article.authorName")}
                             onChange={formik.handleChange}
                             value={ formik.values.authorName }
                             icon={CiPen}
@@ -87,7 +88,7 @@ export default function ArticlePage(props:ArticleProp){
                             type="text"
                             name="title"
                             className="font-input"
-                            placeholder="Titre de l'article..."
+                            placeholder={t("article.title")}
                             onChange={formik.handleChange}
                             value={ formik.values.title }
                             icon={PiArticleNyTimesDuotone}
@@ -102,7 +103,7 @@ export default function ArticlePage(props:ArticleProp){
                                 id="description"
                                 name="description"
                                 className="font-input pl-10"
-                                placeholder="Description..."
+                                placeholder={t("article.description")}
                                 onChange={formik.handleChange}
                                 value={ formik.values.description }
                                 rows={4}
@@ -128,7 +129,7 @@ export default function ArticlePage(props:ArticleProp){
                         >
                             <div className='hover:before:bg-transparent hover:before:border-2 hover:before:border-violet-900 before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-violet-900 relative flex gap-2 p-1 mt-2'>
                                 <span className="relative text-white m-1 send">
-                                    Ajouter
+                                    {t("article.button")}
                                 </span>
                                 <span className="relative text-white m-1 envelop">
                                     <MdAddToPhotos className="ml-2 scale-150" />

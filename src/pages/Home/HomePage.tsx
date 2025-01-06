@@ -4,6 +4,7 @@ import Inbox from "../../components/Inbox/Inbox";
 import { ContactFormInterface } from "../../services/interfaces/ContactForm";
 import { ArticleInterface } from "../../services/interfaces/Article";
 import { Card } from "flowbite-react";
+import { useTranslation } from "react-i18next";
 
 /* import moment from "moment";
 import 'moment/locale/fr'; */
@@ -13,6 +14,7 @@ interface HomePageProp {
 }
 
 export default function HomePage(props:HomePageProp){
+    const { t } = useTranslation();
     /* const m= moment().locale('fr').format('Do MMMM YYYY, h:mm:ss');
     console.log(m); */
 
@@ -57,7 +59,7 @@ export default function HomePage(props:HomePageProp){
 
     return(
         <>
-            <h1 className="text-4xl text-center mb-8 font-h1">Page d'accueil</h1>
+            <h1 className="text-4xl text-center mb-8 font-h1">{t("main.title")}</h1>
 
             {/* <p>{m}</p> */}
 
@@ -71,7 +73,7 @@ export default function HomePage(props:HomePageProp){
                 ?
                     <div>
                         <div>
-                            <h3 className="text-2xl text-center mt-10 mb-5 font-h3">Le dernier article</h3>
+                            <h3 className="text-2xl text-center mt-10 mb-5 font-h3">{t("main.lastArticle.title")}</h3>
                         </div>
                         <div className="flex justify-center items-center mb-24">
                             <Card
@@ -81,9 +83,9 @@ export default function HomePage(props:HomePageProp){
                                 horizontal
                             >                                
                                 <div className="articleText text-slate-900">
-                                    <h3 className="text-lg">Nom de l'auteur : <strong  className="font-h3 text-violet-900 ">{newestArticle.authorName}</strong> </h3>
-                                    <h3><span>Titre :</span> {newestArticle.title}</h3>
-                                    <h3><span>Description :</span> {newestArticle.description}</h3>
+                                    <h3 className="text-lg">{t("main.lastArticle.authorName")} <strong  className="font-h3 text-violet-900 ">{newestArticle.authorName}</strong> </h3>
+                                    <h3><span>{t("main.lastArticle.articleTitle")}</span> {newestArticle.title}</h3>
+                                    <h3><span>{t("main.lastArticle.articleDescription")}</span> {newestArticle.description}</h3>
                                     <p className="mt-2"><i>{newestArticle.date}</i></p>
                                 </div>
                                 <br />

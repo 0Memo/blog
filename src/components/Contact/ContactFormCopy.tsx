@@ -9,13 +9,14 @@ import { ImUser } from "react-icons/im";
 import { ImQuestion } from "react-icons/im";
 import { ImPencil } from "react-icons/im";
 import './ContactForm.css';
+import { useTranslation } from "react-i18next";
 
 interface ContactFormProp {
     handleSubmitContactForm: (contactForm: ContactFormInterface) => void;
 }
 
 export default function ContactForm(props:ContactFormProp){
-
+    const { t } = useTranslation();
     // const [currentId, setCurrentId] = useState(0);
     
     const handleSubmitContactForm = props.handleSubmitContactForm;
@@ -73,7 +74,7 @@ export default function ContactForm(props:ContactFormProp){
     return(
         <>
             <div>
-                <h1 className="text-2xl text-center mb-5 font-h1">Nous contacter</h1>
+                <h1 className="text-2xl text-center mb-5 font-h1">{t("contactForm.ContactUs")}</h1>
 
 
                 <div className="flex justify-center items-center">
@@ -86,7 +87,7 @@ export default function ContactForm(props:ContactFormProp){
                                 name="name"
                                 sizing="sm"
                                 className="font-input"
-                                placeholder="Votre nom..."
+                                placeholder={t("contactForm.name")}
                                 onChange={formik.handleChange}
                                 value={ formik.values.name }
                                 icon={ImUser}
@@ -102,7 +103,7 @@ export default function ContactForm(props:ContactFormProp){
                                 name="topic"
                                 sizing="sm"
                                 className="font-input"
-                                placeholder="Sujet..."
+                                placeholder={t("contactForm.topic")}
                                 onChange={formik.handleChange}
                                 value={ formik.values.topic }
                                 icon={ImQuestion}
@@ -117,7 +118,7 @@ export default function ContactForm(props:ContactFormProp){
                                     id="message"
                                     name="message"
                                     className="font-input pl-10"
-                                    placeholder="Votre message..."
+                                    placeholder={t("contactForm.message")}
                                     onChange={formik.handleChange}
                                     value={formik.values.message}
                                     rows={4}
@@ -143,7 +144,7 @@ export default function ContactForm(props:ContactFormProp){
                             >
                                 <div className='hover:before:bg-transparent hover:before:border-2 hover:before:border-violet-900 before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-violet-900 relative flex gap-2 p-1 mt-2'>
                                     <span className="relative text-white m-1 send">
-                                        Envoyer
+                                        {t("contactForm.send")}
                                     </span>
                                     <span className="relative text-white m-1 envelop">
                                         <IoIosSend className="ml-2 scale-150" />

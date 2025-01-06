@@ -23,6 +23,12 @@
         "error": "Error: Message not found!"
         
     },
+    "blog": {
+        "list": "All articles from newest to oldest",
+        "title": "Title :",
+        "created": "Created ",
+        "description": "Description :"
+    },
     "contactForm": {
         "ContactUs": "Contact us",
         "name": "Your name...",

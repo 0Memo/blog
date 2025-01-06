@@ -15,7 +15,7 @@ export default function FooterComponent() {
                         <Footer.Copyright
                             by={t("footer.text")}
                             year={2025}
-                            className="ml-auto mr-1 text-lg text-white font-footer"
+                            className="ml-auto mr-1 text-sm sm:text-lg text-white font-footer"
                         />
                         <ReactCountryFlag
                             countryCode="CO"
