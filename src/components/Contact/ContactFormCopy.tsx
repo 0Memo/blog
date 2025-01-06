@@ -150,16 +150,6 @@ export default function ContactForm(props:ContactFormProp){
                                     </span>
                                 </div>
                             </Button>
-
-
-                            {/* <span className="button-wrapper relative block h-16">
-                                <Button className="relative flex gap-2 flex-shrink-0 !bg-violet-900 border-2 !text-white font-button hover:!bg-white hover:!text-violet-900 focus:!bg-white focus:!text-violet-900 active:!bg-white active:!text-violet-900 hover:border hover:border-2 hover:border-violet-900 focus:outline-0 focus:ring-0">
-                                    <div className="flex items-center justify-center">
-                                        <span className="relative text-white --m-2 text-base leading-[0.8rem]">Envoyer</span>
-                                        <IoIosSend className="ml-2 scale-150" />
-                                    </div>
-                                </Button>
-                            </span> */}
                         </form>
                     </Card>
                 </div>

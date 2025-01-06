@@ -5,9 +5,14 @@
 @tailwind components;
 @tailwind utilities;
 
+html, body {
+  margin: 0;
+  padding: 0;
+  height: auto;
+}
+
 body {
-  background: url('./assets/backgrounds/background2.jpeg');
-  background-repeat: no-repeat;
+  background: url('./assets/backgrounds/background2.jpeg') no-repeat center center fixed; 
   background-size: cover;
   color: #fff;
 }

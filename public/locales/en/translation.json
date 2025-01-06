@@ -1,0 +1,44 @@
+{
+    "navbar": {
+        "homepage": "Homepage",
+        "blog": "Blog",
+        "article": "Article"
+    },
+    "main": {
+        "title": "Homepage",
+        "lastArticle": {
+            "title": "The last article",
+            "authorName": "Author name :",
+            "articleTitle": "Title :",
+            "articleDescription": "Description :"
+        }
+    },
+    "inbox": {
+        "main": "Inbox",
+        "more": "More",
+        "from": "Message from",
+        "subject": "Topic :",
+        "message": "Message :",
+        "sent": "Sent",
+        "error": "Error: Message not found!"
+        
+    },
+    "contactForm": {
+        "ContactUs": "Contact us",
+        "name": "Your name...",
+        "topic": "Topic...",
+        "message": "Your message...",
+        "send": "Send"
+    },
+    "article": {
+        "add": "Add an article",
+        "authorName": "Author name...",
+        "title": "Article title...",
+        "description": "Description...",
+        "button": "Add"
+
+    },
+    "footer": {
+        "text": "| Guillermo - All rights reserved"
+    }
+}

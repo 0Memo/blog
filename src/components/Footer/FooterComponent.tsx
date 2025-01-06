@@ -1,16 +1,19 @@
 "use client";
 import { Footer } from "flowbite-react";
 import ReactCountryFlag from 'react-country-flag';
+import { useTranslation } from "react-i18next";
 import './Footer.css';
 
 export default function FooterComponent() {
+    const { t } = useTranslation();
+
     return (
         <>
-            <footer className="fixed bottom-0 w-full bg-violet-900 sm:flex sm:items-center sm:justify-between">
+            <footer className="fixed bottom-0 w-full bg-violet-900 flex items-center justify-between">
                 <Footer>
-                    <div className="w-full bg-violet-900 py-4 sm:flex sm:items-center sm:justify-between">
+                    <div className="w-full bg-violet-900 py-4 flex items-center justify-between">
                         <Footer.Copyright
-                            by="| Guillermo — Tous droits réservés"
+                            by={t("footer.text")}
                             year={2025}
                             className="ml-auto mr-1 text-lg text-white font-footer"
                         />
