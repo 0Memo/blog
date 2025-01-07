@@ -64,7 +64,7 @@ export default function ContactForm(props:ContactFormProp){
         const formattedHour = hour < 10 ? `0${hour}` : hour;
         const min = today.getMinutes();
         const formattedMin = min < 10 ? `0${min}` : min;
-        return `le ${date}/${month}/${year} à ${formattedHour}h${formattedMin}`;
+        return `${date}/${month}/${year} — ${formattedHour}h${formattedMin}`;
     };
 
     /* const idIncrement = (id:number) => {
