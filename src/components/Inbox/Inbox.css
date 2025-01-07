@@ -37,3 +37,12 @@
 .button div:hover .send, .button div:hover .envelop {
     color: #6b21a8 !important;
 }
+
+.cards-container {
+    height: 200px;
+    overflow-y: auto;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}

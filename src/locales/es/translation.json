@@ -20,7 +20,8 @@
         "subject": "Asunto :",
         "message": "Mensaje :",
         "sent": "Enviado",
-        "error": "Error: ¡Mensaje no encontrado!"
+        "error": "Error: ¡Mensaje no encontrado!",
+        "noMessages": "Ningún mensaje"
     },
     "blog": {
         "list": "Todos los artículos del más reciente al más antiguo",

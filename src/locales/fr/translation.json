@@ -20,7 +20,8 @@
         "subject": "Sujet :",
         "message": "Message :",
         "sent": "Envoyé",
-        "error": "Erreur : Message introuvable !"
+        "error": "Erreur : Message introuvable !",
+        "noMessages": "Aucun message"
     },
     "blog": {
         "list": "Tous les articles du plus récent au plus ancien",

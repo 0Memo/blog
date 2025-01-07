@@ -26,38 +26,49 @@ export default function Inbox(props:InboxProp){
     return(
         <>
             <div>
-                <h1 className="text-2xl text-center mb-5 font-h1">{t("inbox.main")}</h1>             
-                    {
-                        reversedContactForms.map((contactForm: ContactFormInterface) => (
-                            <div className="flex justify-center items-center mb-4">
-                                <Card
-                                    className="w-96 bg-gray-50 shadow-lg"
-                                    horizontal
-                                >
-                                    <div key={contactForm.id} className="flex space-x-8">
-                                        <div>
-                                            <h3 className="mb-3"><strong className="font-h3 text-violet-900">{contactForm.name}</strong>  - {contactForm.topic} <span className='text-slate-900 block'>{contactForm.message}</span></h3>
-                                            <p className='text-slate-900'>{contactForm.date}</p>
-                                        </div>
-                                        <div>
-                                            <Button
-                                                className="button"
-                                                onClick={() => handleViewDetail(contactForm)}>
-                                                    <div className='hover:before:bg-transparent hover:before:border-2 hover:before:border-violet-900 before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-violet-900 relative flex gap-2 p-1 mt-2'>
-                                                        <span className="relative text-white m-1 send">
-                                                            {t("inbox.more")}
-                                                        </span>
-                                                        <span className="relative text-white m-1 envelop">
-                                                            <TbSquareRoundedPlus className="ml-2 scale-150" />
-                                                        </span>
-                                                    </div>
-                                            </Button>
-                                        </div>
+                <h1 className="text-2xl text-center mb-5 font-h1">{t("inbox.main")}</h1>
+                {
+                    contactForms.length > 0 ? (
+                        <div className="cards-container">
+                            {
+                                reversedContactForms.map((contactForm: ContactFormInterface) => (
+                                    <div className="flex justify-center items-center mb-4">
+                                        <Card
+                                            className="w-96 bg-gray-50 shadow-lg"
+                                            horizontal
+                                        >
+                                            <div key={contactForm.id} className="flex space-x-8">
+                                                <div>
+                                                    <h3 className="mb-3"><strong className="font-h3 text-violet-900">{contactForm.name}</strong>  - {contactForm.topic} <span className='text-slate-900 block'>{contactForm.message}</span></h3>
+                                                    <p className='text-slate-900'>{contactForm.date}</p>
+                                                </div>
+                                                <div>
+                                                    <Button
+                                                        className="button"
+                                                        onClick={() => handleViewDetail(contactForm)}>
+                                                            <div className='hover:before:bg-transparent hover:before:border-2 hover:before:border-violet-900 before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-violet-900 relative flex gap-2 p-1 mt-2'>
+                                                                <span className="relative text-white m-1 send">
+                                                                    {t("inbox.more")}
+                                                                </span>
+                                                                <span className="relative text-white m-1 envelop">
+                                                                    <TbSquareRoundedPlus className="ml-2 scale-150" />
+                                                                </span>
+                                                            </div>
+                                                    </Button>
+                                                </div>
+                                            </div>
+                                        </Card>
                                     </div>
-                                </Card>
-                            </div>
-                        ))
-                    }
+                                ))
+                            }
+                        </div>
+                    ) : (
+                        /* Message to show when no messages are available */
+                        <div className="flex justify-center items-center h-48">
+                            <p className="text-gray-500 text-lg">{t("inbox.noMessages")}</p>
+                        </div>
+                    )
+                }
             </div>
         </>
     )

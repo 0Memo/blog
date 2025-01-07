@@ -29,7 +29,7 @@ export default function ArticlePage(props:ArticleProp){
             const formattedHour = hour < 10 ? `0${hour}` : hour;
             const min = today.getMinutes();
             const formattedMin = min < 10 ? `0${min}` : min;
-            return `le ${date}/${month}/${year} à ${formattedHour}h${formattedMin}`;
+            return `${year}/${month}/${date} — ${formattedHour}h${formattedMin}`;
         }
     
         const newArticle: ArticleInterface = {

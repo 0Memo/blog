@@ -20,7 +20,8 @@
         "subject": "Topic :",
         "message": "Message :",
         "sent": "Sent",
-        "error": "Error: Message not found!"
+        "error": "Error: Message not found!",
+        "noMessages": "No messages"
         
     },
     "blog": {
