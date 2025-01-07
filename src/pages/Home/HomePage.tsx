@@ -69,8 +69,7 @@ export default function HomePage(props:HomePageProp){
             </div>
             
             {
-                newestArticle
-                ?
+                newestArticle ? (
                     <div>
                         <div>
                             <h3 className="text-2xl text-center mt-10 mb-5 font-h3">{t("main.lastArticle.title")}</h3>
@@ -92,7 +91,11 @@ export default function HomePage(props:HomePageProp){
                             </Card>
                         </div>
                     </div>
-                : ""
+                ) : (
+                    <div className="flex justify-center items-center h-48">
+                        <p className="text-gray-200 text-lg italic font-light underline decoration-2 decoration-violet-500 underline-offset-4">{t("main.noArticles")}</p>
+                    </div>
+                )
             }
         </>
     )

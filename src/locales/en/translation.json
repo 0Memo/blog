@@ -11,7 +11,8 @@
             "authorName": "Author name :",
             "articleTitle": "Title :",
             "articleDescription": "Description :"
-        }
+        },
+        "noArticles": "No articles"
     },
     "inbox": {
         "main": "Inbox",

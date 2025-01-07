@@ -63,9 +63,8 @@ export default function Inbox(props:InboxProp){
                             }
                         </div>
                     ) : (
-                        /* Message to show when no messages are available */
                         <div className="flex justify-center items-center h-48">
-                            <p className="text-gray-500 text-lg">{t("inbox.noMessages")}</p>
+                            <p className="text-gray-200 text-lg italic font-light underline decoration-2 decoration-violet-500 underline-offset-4">{t("inbox.noMessages")}</p>
                         </div>
                     )
                 }

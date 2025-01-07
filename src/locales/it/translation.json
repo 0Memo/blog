@@ -11,7 +11,8 @@
             "authorName": "Nome dell'autore :",
             "articleTitle": "Titolo :",
             "articleDescription": "Descrizione :"
-        }
+        },
+        "noArticles": "Nessun articolo"
     },
     "inbox": {
         "main": "Posta in arrivo",
