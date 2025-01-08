@@ -17,6 +17,7 @@
     "inbox": {
         "main": "Inbox",
         "more": "More",
+        "delete": "Delete",
         "from": "Message from",
         "subject": "Topic :",
         "message": "Message :",
@@ -36,14 +37,28 @@
         "name": "Your name...",
         "topic": "Topic...",
         "message": "Your message...",
-        "send": "Send"
+        "send": "Send",
+        "errors": {
+            "name": "The name is mandatory",
+            "topic": "The topic is mandatory",
+            "message": "The message is mandatory",
+            "minimum": "minimum 3 characters",
+            "maximum": "maximum 25 characters"
+        }
     },
     "article": {
         "add": "Add an article",
         "authorName": "Author name...",
         "title": "Article title...",
         "description": "Description...",
-        "button": "Add"
+        "button": "Add",
+        "errors": {
+            "authorName": "The author's name is mandatory",
+            "title": "The title is mandatory",
+            "description": "The description is mandatory",
+            "minimum": "minimum 3 characters",
+            "maximum": "maximum 25 characters"
+        }
 
     },
     "footer": {

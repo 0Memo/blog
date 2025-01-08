@@ -10,6 +10,7 @@ import { ImQuestion } from "react-icons/im";
 import { ImPencil } from "react-icons/im";
 import './ContactForm.css';
 import { useTranslation } from "react-i18next";
+import { useNavigate } from 'react-router-dom';
 
 interface ContactFormProp {
     handleSubmitContactForm: (contactForm: ContactFormInterface) => void;
@@ -17,6 +18,7 @@ interface ContactFormProp {
 
 export default function ContactForm(props:ContactFormProp){
     const { t } = useTranslation();
+    const navigate = useNavigate();
     // const [currentId, setCurrentId] = useState(0);
     
     const handleSubmitContactForm = props.handleSubmitContactForm;
@@ -30,17 +32,17 @@ export default function ContactForm(props:ContactFormProp){
         },
         validationSchema: Yup.object({
             name: Yup.string()
-                            .min(3, "minimum 3 caractères")
-                            .max(25, "maximum 25 caractères")
-                            .required("Le nom est obligatoire"),
+                            .min(3, `${t('contactForm.errors.minimum')}`)
+                            .max(25, `${t('contactForm.errors.maximum')}`)
+                            .required(`${t('contactForm.errors.name')}`),
             topic: Yup.string()
-                            .min(3, "minimum 3 caractères")
-                            .max(25, "maximum 25 caractères")
-                            .required("Le sujet est obligatoire"),
+                            .min(3, `${t('contactForm.errors.minimum')}`)
+                            .max(25, `${t('contactForm.errors.maximum')}`)
+                            .required(`${t('contactForm.errors.topic')}`),
             message: Yup.string()
-                            .min(3, "minimum 3 caractères")
+                            .min(3, `${t('contactForm.errors.minimum')}`)
                             /* .max(25, "maximum 25 caractères") */
-                            .required("Le message est obligatoire"),
+                            .required(`${t('contactForm.errors.message')}`),
             //createdOn: Yup.date().default(() => new Date()),
         }),
         onSubmit: (values) => {
@@ -51,7 +53,7 @@ export default function ContactForm(props:ContactFormProp){
             );
             // setCurrentId(idIncrement(currentId));
             formik.resetForm();
-            alert('Votre message a bien été envoyé!');
+            navigate('/');
         },
     });
 

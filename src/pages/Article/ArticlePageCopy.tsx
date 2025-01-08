@@ -9,6 +9,7 @@ import { PiArticleNyTimesDuotone } from "react-icons/pi";
 import { CiPen } from "react-icons/ci";
 import './Article.css';
 import { useTranslation } from "react-i18next";
+import { useNavigate } from 'react-router-dom';
 
 interface ArticleProp {
     handleSubmitArticle: (article:ArticleInterface) => void;
@@ -16,6 +17,7 @@ interface ArticleProp {
 
 export default function ArticlePage(props:ArticleProp){
     const { t } = useTranslation();
+    const navigate = useNavigate();
     const handleSubmitArticle = props.handleSubmitArticle;
 
     const formik = useFormik({
@@ -27,16 +29,16 @@ export default function ArticlePage(props:ArticleProp){
         },
         validationSchema: Yup.object({
             authorName: Yup.string()
-                            .min(3, "minimum 3 caractères")
-                            .max(25, "maximum 25 caractères")
-                            .required("Le nom de l'auteur est obligatoire"),
+                            .min(3, `${t('article.errors.minimum')}`)
+                            .max(25, `${t('article.errors.maximum')}`)
+                            .required(`${t('article.errors.authorName')}`),
             title: Yup.string()
-                            .min(3, "minimum 3 caractères")
-                            .max(25, "maximum 25 caractères")
-                            .required("Le titre est obligatoire"),
+                            .min(3, `${t('article.errors.minimum')}`)
+                            .max(25, `${t('article.errors.maximum')}`)
+                            .required(`${t('article.errors.title')}`),
             description: Yup.string()
-                            .min(3, "minimum 3 caractères")
-                            .required("La description est obligatoire")
+                            .min(3, `${t('article.errors.minimum')}`)
+                            .required(`${t('article.errors.description')}`)
             //createdOn: Yup.date().default(() => new Date()),
         }),
         onSubmit: (values) => {
@@ -45,7 +47,7 @@ export default function ArticlePage(props:ArticleProp){
                     ...values, date: getDate()
                 });
             formik.resetForm();
-            alert('Votre article a bien été envoyé');
+            navigate('/#articleTitle');
         },
     });
 
@@ -67,7 +69,7 @@ export default function ArticlePage(props:ArticleProp){
 
             <div className="flex justify-center items-center">
                 <Card className="w-96 bg-gray-50">
-                    <form id="articleForm" onSubmit={formik.handleSubmit} className="flex flex-col gap-4">
+                    <form id="articleForm" onSubmit={formik.handleSubmit} className="flex flex-col gap-3">
                         <TextInput
                             id="authorName"
                             type="text"

@@ -29,17 +29,17 @@ export default function HomePage(props:HomePageProp){
     });
 
     useEffect(() => {
-    localStorage.setItem("contactFormItem", JSON.stringify(contactForms));
-    }, [contactForms])
+        localStorage.setItem("contactFormItem", JSON.stringify(contactForms));
+        }, [contactForms])
 
-    const storesContactForms = () => {
-    const storedValues = localStorage.getItem("contactFormItem");
-    if(!storedValues) { 
-        setContactForms(contactForms)
-        return articles; 
-    }
-    
-        return JSON.parse(storedValues);
+        const storesContactForms = () => {
+        const storedValues = localStorage.getItem("contactFormItem");
+        if(!storedValues) { 
+            setContactForms(contactForms)
+            return articles; 
+        }
+        
+            return JSON.parse(storedValues);
     };
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -51,7 +51,16 @@ export default function HomePage(props:HomePageProp){
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [contactForms]);
 
-
+    useEffect(() => {
+        // Check for hash in the URL
+        const hash = window.location.hash;
+        if (hash === "#articleTitle") {
+            const element = document.getElementById("articleTitle");
+            if (element) {
+                element.scrollIntoView({ behavior: "smooth" });
+            }
+        }
+    }, []);
     
     function handleSubmitContactForm(contactForm:ContactFormInterface):void{
         setContactForms([ ...contactForms,  contactForm]);
@@ -81,7 +90,7 @@ export default function HomePage(props:HomePageProp){
                                 imgSrc="https://craftypixels.com/placeholder-image/150x150/2e1065/fff&text=Placeholder"
                                 horizontal
                             >                                
-                                <div className="articleText text-slate-900">
+                                <div className="articleText text-slate-900" id="articleTitle">
                                     <h3 className="text-lg">{t("main.lastArticle.authorName")} <strong  className="font-h3 text-violet-900 ">{newestArticle.authorName}</strong> </h3>
                                     <h3><span>{t("main.lastArticle.articleTitle")}</span> {newestArticle.title}</h3>
                                     <h3><span>{t("main.lastArticle.articleDescription")}</span> {newestArticle.description}</h3>

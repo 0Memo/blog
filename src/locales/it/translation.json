@@ -17,6 +17,7 @@
     "inbox": {
         "main": "Posta in arrivo",
         "more": "Altro",
+        "delete": "Cancellare",
         "from": "Messaggio da",
         "subject": "Oggetto :",
         "message": "Messaggio :",
@@ -35,14 +36,28 @@
         "name": "Il tuo nome...",
         "topic": "Oggetto...",
         "message": "Il tuo messaggio...",
-        "send": "Invia"
+        "send": "Invia",
+        "errors": {
+            "name": "Il nome è obbligatorio",
+            "topic": "Il tema è obbligatorio",
+            "message": "Il messaggio è obbligatorio",
+            "minimum": "minimo 3 caratteri",
+            "maximum": "massimo 25 caratteri"
+        }
     },
     "article": {
         "add": "Aggiungi un articolo",
         "authorName": "Nome dell'autore...",
         "title": "Titolo dell'articolo...",
         "description": "Descrizione...",
-        "button": "Aggiungi"
+        "button": "Aggiungi",
+        "errors": {
+            "authorName": "Il nome dell'autore è obbligatorio",
+            "title": "Il titolo è obbligatorio",
+            "description": "La descrizione è obbligatoria",
+            "minimum": "minimo 3 caratteri",
+            "maximum": "massimo 25 caratteri"
+        }
     },
     "footer": {
         "text": "| Guillermo - Tutti i diritti riservati"
