@@ -31,7 +31,7 @@ export default function NavbarComponent(){
                     </Navbar.Collapse>
                     
                 </Navbar>
-                <div className="flex flex-wrap justify-center items-center space-x-4 -mt-4 sm:mt-8 ">
+                <div className="flex flex-nowrap justify-center items-center space-x-4 -mt-4 sm:mt-8 ">
                     <ReactCountryFlag
                         countryCode="US"
                         svg
@@ -85,6 +85,17 @@ export default function NavbarComponent(){
                         }}
                         title="Italiano"
                         onClick={() => changeLanguage("it")}
+                        className="mr-auto cursor-pointer"
+                    />
+                    <ReactCountryFlag
+                        countryCode="AM"
+                        svg
+                        style={{
+                            width: "3.75em",
+                            height: "1.5em",
+                        }}
+                        title=" Հայերեն"
+                        onClick={() => changeLanguage("hy")}
                         className="mr-auto cursor-pointer"
                     />
                 </div>
