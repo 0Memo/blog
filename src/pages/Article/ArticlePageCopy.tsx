@@ -55,7 +55,7 @@ export default function ArticlePage(props:ArticleProp){
         const today = new Date();
         const month = (today.getMonth() + 1).toString().padStart(2, '0');
         const year = today.getFullYear();
-        const date = today.getDate();
+        const date = today.getDate().toString().padStart(2, '0');
         const hour = today.getHours();
         const formattedHour = hour < 10 ? `0${hour}` : hour;
         const min = today.getMinutes();
