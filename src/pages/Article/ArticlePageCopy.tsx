@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import { ArticleInterface } from '../../services/interfaces/Article';
 import { useFormik } from 'formik';
@@ -10,15 +11,33 @@ import { CiPen } from "react-icons/ci";
 import './Article.css';
 import { useTranslation } from "react-i18next";
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from "react";
 
 interface ArticleProp {
     handleSubmitArticle: (article:ArticleInterface) => void;
 }
 
 export default function ArticlePage(props:ArticleProp){
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
     const navigate = useNavigate();
     const handleSubmitArticle = props.handleSubmitArticle;
+
+    // Create a dynamic validation schema based on the language
+    const getValidationSchema = () => {
+        return Yup.object({
+            authorName: Yup.string()
+                .min(3, `${t('article.errors.minimum')}`)
+                .max(25, `${t('article.errors.maximum')}`)
+                .required(`${t('article.errors.authorName')}`),
+            title: Yup.string()
+                .min(3, `${t('article.errors.minimum')}`)
+                .max(25, `${t('article.errors.maximum')}`)
+                .required(`${t('article.errors.title')}`),
+            description: Yup.string()
+                .min(3, `${t('article.errors.minimum')}`)
+                .required(`${t('article.errors.description')}`)
+        });
+    };
 
     const formik = useFormik({
         initialValues: {
@@ -27,24 +46,12 @@ export default function ArticlePage(props:ArticleProp){
             description: "",
             date: ""
         },
-        validationSchema: Yup.object({
-            authorName: Yup.string()
-                            .min(3, `${t('article.errors.minimum')}`)
-                            .max(25, `${t('article.errors.maximum')}`)
-                            .required(`${t('article.errors.authorName')}`),
-            title: Yup.string()
-                            .min(3, `${t('article.errors.minimum')}`)
-                            .max(25, `${t('article.errors.maximum')}`)
-                            .required(`${t('article.errors.title')}`),
-            description: Yup.string()
-                            .min(3, `${t('article.errors.minimum')}`)
-                            .required(`${t('article.errors.description')}`)
-            //createdOn: Yup.date().default(() => new Date()),
-        }),
+        validationSchema: getValidationSchema(),
         onSubmit: (values) => {
             handleSubmitArticle(
                 {
-                    ...values, date: getDate()
+                    ...values,
+                    date: getDate()
                 });
             formik.resetForm();
             navigate('/#articleTitle');
@@ -62,6 +69,11 @@ export default function ArticlePage(props:ArticleProp){
         const formattedMin = min < 10 ? `0${min}` : min;
         return `${year}/${month}/${date} — ${formattedHour}h${formattedMin}`;
     };
+
+    // Handle language change: reset form on language switch
+    useEffect(() => {
+        formik.resetForm();
+    }, [i18n.language]);
 
     return(
         <>
