@@ -6,6 +6,8 @@ import translationFR from "./locales/fr/translation.json";
 import translationPT from "./locales/pt/translation.json";
 import translationIT from "./locales/it/translation.json";
 import translationHY from "./locales/hy/translation.json";
+import translationSE from "./locales/se/translation.json";
+import translationRO from "./locales/ro/translation.json";
 
 const resources = {
     en: { translation: translationEN },
@@ -14,6 +16,8 @@ const resources = {
     pt: { translation: translationPT },
     it: { translation: translationIT },
     hy: { translation: translationHY },
+    se: { translation: translationSE },
+    ro: { translation: translationRO },
 };
 
 i18n.use(initReactI18next).init({

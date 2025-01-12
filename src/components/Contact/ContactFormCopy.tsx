@@ -75,7 +75,7 @@ export default function ContactForm(props:ContactFormProp){
     
     return(
         <>
-            <div>
+            <div className="mt-8 sm:mt-0">
                 <h1 className="text-2xl text-center mb-5 font-h1">{t("contactForm.ContactUs")}</h1>
 
 

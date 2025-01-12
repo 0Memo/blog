@@ -1,0 +1,65 @@
+{
+    "navbar": {
+        "homepage": "Pagina principală",
+        "blog": "Blog",
+        "article": "Articol"
+    },
+    "main": {
+        "title": "Pagina principală",
+        "lastArticle": {
+            "title": "Ultimul articol",
+            "authorName": "Numele autorului :",
+            "articleTitle": "Titlu :",
+            "articleDescription": "Descriere :"
+        },
+        "noArticles": "Niciun articol"
+    },
+    "inbox": {
+        "main": "Inbox",
+        "more": "Mai multe",
+        "delete": "Șterge",
+        "from": "Mesaj de la",
+        "subject": "Subiect :",
+        "message": "Mesaj :",
+        "sent": "Trimis",
+        "error": "Eroare: Mesajul nu a fost găsit!",
+        "noMessages": "Niciun mesaj"
+    },
+    "blog": {
+        "list": "Toate articolele de la cel mai nou la cel mai vechi",
+        "title": "Titlu :",
+        "created": "Creat ",
+        "description": "Descriere :"
+    },
+    "contactForm": {
+        "ContactUs": "Contactează-ne",
+        "name": "Numele tău...",
+        "topic": "Subiect...",
+        "message": "Mesajul tău...",
+        "send": "Trimite",
+        "errors": {
+            "name": "Numele este obligatoriu",
+            "topic": "Subiectul este obligatoriu",
+            "message": "Mesajul este obligatoriu",
+            "minimum": "minim 3 caractere",
+            "maximum": "maxim 25 de caractere"
+        }
+    },
+    "article": {
+        "add": "Adaugă un articol",
+        "authorName": "Numele autorului...",
+        "title": "Titlul articolului...",
+        "description": "Descriere...",
+        "button": "Adaugă",
+        "errors": {
+            "authorName": "Numele autorului este obligatoriu",
+            "title": "Titlul este obligatoriu",
+            "description": "Descrierea este obligatorie",
+            "minimum": "minim 3 caractere",
+            "maximum": "maxim 25 de caractere"
+        }
+    },
+    "footer": {
+        "text": "| Guillermo - Toate drepturile rezervate"
+    }
+}

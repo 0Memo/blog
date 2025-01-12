@@ -1,0 +1,65 @@
+{
+    "navbar": {
+        "homepage": "Hem",
+        "blog": "Blogg",
+        "article": "Artikel"
+    },
+    "main": {
+        "title": "Hem",
+        "lastArticle": {
+            "title": "Den senaste artikeln",
+            "authorName": "Författarens namn :",
+            "articleTitle": "Titel :",
+            "articleDescription": "Beskrivning :"
+        },
+        "noArticles": "Inga artiklar"
+    },
+    "inbox": {
+        "main": "Inkorg",
+        "more": "Mer",
+        "delete": "Radera",
+        "from": "Meddelande från",
+        "subject": "Ämne :",
+        "message": "Meddelande :",
+        "sent": "Skickat",
+        "error": "Fel: Meddelandet hittades inte!",
+        "noMessages": "Inga meddelanden"
+    },
+    "blog": {
+        "list": "Alla artiklar från nyaste till äldsta",
+        "title": "Titel :",
+        "created": "Skapad ",
+        "description": "Beskrivning :"
+    },
+    "contactForm": {
+        "ContactUs": "Kontakta oss",
+        "name": "Ditt namn...",
+        "topic": "Ämne...",
+        "message": "Ditt meddelande...",
+        "send": "Skicka",
+        "errors": {
+            "name": "Namn är obligatoriskt",
+            "topic": "Ämne är obligatoriskt",
+            "message": "Meddelande är obligatoriskt",
+            "minimum": "minst 3 tecken",
+            "maximum": "maximalt 25 tecken"
+        }
+    },
+    "article": {
+        "add": "Lägg till en artikel",
+        "authorName": "Författarens namn...",
+        "title": "Artikelns titel...",
+        "description": "Beskrivning...",
+        "button": "Lägg till",
+        "errors": {
+            "authorName": "Författarens namn är obligatoriskt",
+            "title": "Titeln är obligatorisk",
+            "description": "Beskrivning är obligatoriskt",
+            "minimum": "minst 3 tecken",
+            "maximum": "maximalt 25 tecken"
+        }
+    },
+    "footer": {
+        "text": "| Guillermo - Alla rättigheter reserverade"
+    }
+}

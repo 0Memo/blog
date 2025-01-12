@@ -68,7 +68,7 @@ export default function HomePage(props:HomePageProp){
 
     return(
         <>
-            <h1 className="text-4xl text-center mb-8 font-h1">{t("main.title")}</h1>
+            <h1 className="text-4xl text-center mb-24 sm:mb-8 font-h1">{t("main.title")}</h1>
 
             {/* <p>{m}</p> */}
 
