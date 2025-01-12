@@ -4,6 +4,7 @@ import { ArticleInterface } from '../../services/interfaces/Article';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { Card, Button, TextInput, Textarea } from "flowbite-react";
+import { v4 as uuidv4 } from "uuid";
 import { MdAddToPhotos } from "react-icons/md";
 import { TbFileDescription } from "react-icons/tb";
 import { PiArticleNyTimesDuotone } from "react-icons/pi";
@@ -51,7 +52,8 @@ export default function ArticlePage(props:ArticleProp){
             handleSubmitArticle(
                 {
                     ...values,
-                    date: getDate()
+                    id: uuidv4(),
+                    date: getDate(),
                 });
             formik.resetForm();
             navigate('/#articleTitle');

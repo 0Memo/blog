@@ -29,8 +29,11 @@
     "blog": {
         "list": "All articles from newest to oldest",
         "title": "Title :",
+        "details": "Details",
         "created": "Created ",
-        "description": "Description :"
+        "from": "Article from",
+        "description": "Description :",
+        "noArticles": "No articles"
     },
     "contactForm": {
         "ContactUs": "Contact us",

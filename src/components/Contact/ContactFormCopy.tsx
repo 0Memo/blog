@@ -39,10 +39,10 @@ export default function ContactForm(props: ContactFormProp) {
     // Formik initialization with dynamic validation schema
     const formik = useFormik({
         initialValues: {
-        name: "",
-        topic: "",
-        message: "",
-        date: "",
+            name: "",
+            topic: "",
+            message: "",
+            date: "",
         },
         validationSchema: getValidationSchema(),
         onSubmit: (values) => {

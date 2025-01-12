@@ -5,3 +5,12 @@
     margin: 0 auto;
     gap: 7px;
 } */
+
+.blogs-container {
+    height: 400px;
+    overflow-y: auto;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}

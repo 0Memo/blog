@@ -27,9 +27,12 @@
     },
     "blog": {
         "list": "Alla artiklar från nyaste till äldsta",
+        "details": "Detaljer",
         "title": "Titel :",
         "created": "Skapad ",
-        "description": "Beskrivning :"
+        "from": "Artikel från",
+        "description": "Beskrivning :",
+        "noArticles": "Inga artiklar"
     },
     "contactForm": {
         "ContactUs": "Kontakta oss",

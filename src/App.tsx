@@ -9,6 +9,7 @@ import { ArticleInterface } from './services/interfaces/Article';
 import BlogPage from './pages/Blog/BlogPage';
 import { useEffect, useState } from 'react';
 import InboxDetailPage from './components/Inbox/InboxDetailPage';
+import BlogDetailPage from './pages/Blog/BlogDetailPage';
 
 function App() {
 
@@ -54,6 +55,7 @@ function App() {
 
                 <Route path='/message/:id' element={ <InboxDetailPage /> } />
                 <Route path='/blog' element={ <BlogPage articles={articles} /> } />
+                <Route path='/blog/:id' element={ <BlogDetailPage /> } />
                 <Route path='/article' element={ <ArticlePage handleSubmitArticle={handleSubmitArticle} /> } />
 
               </Route>

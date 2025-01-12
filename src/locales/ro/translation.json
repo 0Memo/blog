@@ -27,9 +27,12 @@
     },
     "blog": {
         "list": "Toate articolele de la cel mai nou la cel mai vechi",
+        "details": "Detalii",
         "title": "Titlu :",
         "created": "Creat ",
-        "description": "Descriere :"
+        "from": "Articol de la",
+        "description": "Descriere :",
+        "noArticles": "Niciun articol"
     },
     "contactForm": {
         "ContactUs": "Contactează-ne",

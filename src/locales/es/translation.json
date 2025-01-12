@@ -27,9 +27,12 @@
     },
     "blog": {
         "list": "Todos los artículos del más reciente al más antiguo",
+        "details": "Detalles",
         "title": "Título :",
         "created": "Creado ",
-        "description": "Descripción :"
+        "from": "Artículo de",
+        "description": "Descripción :",
+        "noArticles": "Ningún artículo"
     },
     "contactForm": {
         "ContactUs": "Contáctanos",
