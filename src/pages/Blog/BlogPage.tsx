@@ -15,7 +15,9 @@ export default function BlogPage(props:BlogPageProp){
         <>
             <h1 className="text-4xl text-center mb-8 font-h1">{t("blog.list")}</h1>
             <br />
-            <Blog articles={articles} />
+            <div className='flex flex-wrap justify-center'>
+                <Blog articles={articles} />
+            </div>
         </>
     )
 }
