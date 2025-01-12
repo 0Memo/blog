@@ -13,6 +13,18 @@ export default function NavbarComponent(){
         i18n.changeLanguage(lng);
     };
 
+    // Language data array
+    const languages = [
+        { code: "US", label: "English", lng: "en" },
+        { code: "ES", label: "Español", lng: "es" },
+        { code: "FR", label: "Français", lng: "fr" },
+        { code: "BR", label: "Português", lng: "pt" },
+        { code: "IT", label: "Italiano", lng: "it" },
+        { code: "AM", label: "Հայերեն", lng: "hy" },
+        { code: "SE", label: "Svenska", lng: "se" },
+        { code: "RO", label: "Română", lng: "ro" },
+    ];
+
     return(
         <>
             {/* Conditionner l'affichage des trois liens si l'on n'est pas connecté */}
@@ -33,110 +45,21 @@ export default function NavbarComponent(){
                 </Navbar>
                 
                 <div className="flex flex-wrap justify-center items-center space-x-8 space-y-4 sm:space-y-0 sm:flex-nowrap sm:space-x-4 -mt-4 sm:mt-8">
-                    <div className="w-1/6 sm:w-auto ml-8 sm:ml-0">
+                    {languages.map(({ code, label, lng }) => (
+                    <div key={code} className="w-1/6 sm:w-auto ml-8 sm:ml-0">
                         <ReactCountryFlag
-                            countryCode="US"
-                            svg
-                            style={{
-                                width: "3.75em",
-                                height: "1.5em",
-                            }}
-                            title="English"
-                            onClick={() => changeLanguage("en")}
-                            className="cursor-pointer"
+                        countryCode={code}
+                        svg
+                        style={{
+                            width: "3.75em",
+                            height: "1.5em",
+                        }}
+                        title={label}
+                        onClick={() => changeLanguage(lng)}
+                        className="cursor-pointer"
                         />
                     </div>
-                    <div className="w-1/6 sm:w-auto ml-8 sm:ml-0">
-                        <ReactCountryFlag
-                            countryCode="ES"
-                            svg
-                            style={{
-                                width: "3.75em",
-                                height: "1.5em",
-                            }}
-                            title="Español"
-                            onClick={() => changeLanguage("es")}
-                            className="cursor-pointer"
-                        />
-                    </div>
-                    <div className="w-1/6 sm:w-auto ml-8 sm:ml-0">
-                        <ReactCountryFlag
-                            countryCode="FR"
-                            svg
-                            style={{
-                                width: "3.75em",
-                                height: "1.5em",
-                            }}
-                            title="Français"
-                            onClick={() => changeLanguage("fr")}
-                            className="cursor-pointer"
-                        />
-                    </div>
-                    <div className="w-1/6 sm:w-auto ml-8 sm:ml-0">
-                        <ReactCountryFlag
-                            countryCode="BR"
-                            svg
-                            style={{
-                                width: "3.75em",
-                                height: "1.5em",
-                            }}
-                            title="Português"
-                            onClick={() => changeLanguage("pt")}
-                            className="cursor-pointer"
-                        />
-                    </div>
-                    <div className="w-1/6 sm:w-auto ml-8 sm:ml-0">
-                        <ReactCountryFlag
-                            countryCode="IT"
-                            svg
-                            style={{
-                                width: "3.75em",
-                                height: "1.5em",
-                            }}
-                            title="Italiano"
-                            onClick={() => changeLanguage("it")}
-                            className="cursor-pointer"
-                        />
-                    </div>
-                    <div className="w-1/6 sm:w-auto ml-8 sm:ml-0">
-                        <ReactCountryFlag
-                            countryCode="AM"
-                            svg
-                            style={{
-                                width: "3.75em",
-                                height: "1.5em",
-                            }}
-                            title="Հայերեն"
-                            onClick={() => changeLanguage("hy")}
-                            className="cursor-pointer"
-                        />
-                    </div>
-                    <div className="w-1/6 sm:w-auto ml-8 sm:ml-0">
-                        <ReactCountryFlag
-                            countryCode="SE"
-                            svg
-                            style={{
-                                width: "3.75em",
-                                height: "1.5em",
-                            }}
-                            title="Svenska"
-                            onClick={() => changeLanguage("se")}
-                            className="cursor-pointer"
-                        />
-                    </div>
-                    <div className="w-1/6 sm:w-auto ml-8 sm:ml-0">
-                        <ReactCountryFlag
-                            countryCode="RO"
-                            svg
-                            style={{
-                                width: "3.75em",
-                                height: "1.5em",
-                            }}
-                            title="Română"
-                            onClick={() => changeLanguage("ro")}
-                            className="cursor-pointer"
-                        />
-                    </div>
+                    ))}
                 </div>
             </div>
             : <Navigate to="/" />

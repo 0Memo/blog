@@ -47,7 +47,7 @@ export default function Inbox(props:InboxProp){
                                                         className="button"
                                                         onClick={() => handleViewDetail(contactForm)}>
                                                             <div className='hover:before:bg-transparent hover:before:border-2 hover:before:border-violet-900 before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-violet-900 relative flex gap-2 p-1 mt-2'>
-                                                                <span className="relative text-white m-1 send">
+                                                                <span className="relative text-white m-1 send transition duration-500 ease-in-out">
                                                                     {t("inbox.more")}
                                                                 </span>
                                                                 <span className="relative text-white m-1 envelop">

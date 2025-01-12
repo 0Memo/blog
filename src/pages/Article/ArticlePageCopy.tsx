@@ -81,7 +81,7 @@ export default function ArticlePage(props:ArticleProp){
                             icon={CiPen}
                             helperText={
                                 <>
-                                <span className="font-medium">{formik.errors.authorName}</span>
+                                <span className="font-medium text-red-500">{formik.errors.authorName}</span>
                                 </>
                             }
                         />
@@ -96,7 +96,7 @@ export default function ArticlePage(props:ArticleProp){
                             icon={PiArticleNyTimesDuotone}
                             helperText={
                                 <>
-                                <span className="font-medium">{formik.errors.title}</span>
+                                <span className="font-medium text-red-500">{formik.errors.title}</span>
                                 </>
                             }
                         />
@@ -111,7 +111,7 @@ export default function ArticlePage(props:ArticleProp){
                                 rows={4}
                                 helperText={
                                     <>
-                                    <span className="font-medium">{formik.errors.description}</span>
+                                    <span className="font-medium text-red-500">{formik.errors.description}</span>
                                     </>
                                 }
                             />
@@ -130,7 +130,7 @@ export default function ArticlePage(props:ArticleProp){
                             type="submit"
                         >
                             <div className='hover:before:bg-transparent hover:before:border-2 hover:before:border-violet-900 before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-violet-900 relative flex gap-2 p-1 mt-2'>
-                                <span className="relative text-white m-1 send">
+                                <span className="relative text-white m-1 send transition duration-500 ease-in-out">
                                     {t("article.button")}
                                 </span>
                                 <span className="relative text-white m-1 envelop">
