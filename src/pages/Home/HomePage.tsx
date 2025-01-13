@@ -4,6 +4,8 @@ import Inbox from "../../components/Inbox/Inbox";
 import { ContactFormInterface } from "../../services/interfaces/ContactForm";
 import { ArticleInterface } from "../../services/interfaces/Article";
 import { Card } from "flowbite-react";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import { useTranslation } from "react-i18next";
 
 /* import moment from "moment";
@@ -27,6 +29,16 @@ export default function HomePage(props:HomePageProp){
         const storedValues = localStorage.getItem("contactFormItem"); 
         return storedValues ? JSON.parse(storedValues) : [];
     });
+
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        // Simulate loading for skeleton demo
+        const timer = setTimeout(() => {
+        setLoading(false);
+        }, 1500); // Adjust the timeout as needed
+        return () => clearTimeout(timer);
+    }, []);
 
     useEffect(() => {
         localStorage.setItem("contactFormItem", JSON.stringify(contactForms));
@@ -77,8 +89,15 @@ export default function HomePage(props:HomePageProp){
                     <ContactForm handleSubmitContactForm={handleSubmitContactForm} />
             </div>
             
-            {
-                newestArticle ? (
+            {loading ? (
+                // Skeleton Loader
+                <div className="flex justify-center items-center mt-20 mb-24">
+                    <div className="max-w-sm bg-gray-50 shadow-lg p-4">
+                        <Skeleton height={150} width={300} className="mb-4" />
+                        <Skeleton count={3} />
+                    </div>
+                </div>
+            ) : newestArticle ? (
                     <div>
                         <div>
                             <h3 className="text-2xl text-center mt-10 mb-5 font-h3">{t("main.lastArticle.title")}</h3>
