@@ -58,9 +58,9 @@ export default function HomePage(props:HomePageProp){
     useEffect(() => { storesContactForms()}, []);
     
     useEffect(() => {
-    if(!contactForms) return;
-    storesContactForms();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        if(!contactForms) return;
+        storesContactForms();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [contactForms]);
 
     useEffect(() => {

@@ -5,6 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from "react-i18next";
 import '../../pages/Blog/Blog.css'
 import { TbSquareRoundedPlus } from "react-icons/tb";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import { useEffect, useState } from "react";
 
 interface BlogProp {
     articles: ArticleInterface[];
@@ -15,14 +18,31 @@ export default function Blog(props: BlogProp) {
     const navigate = useNavigate();
     const articles = props.articles.slice().reverse();
 
+    const [loading, setLoading] = useState(true);
+        
+    useEffect(() => {
+        // Simulate loading for skeleton demo
+        const timer = setTimeout(() => {
+        setLoading(false);
+        }, 1500); // Adjust the timeout as needed
+        return () => clearTimeout(timer);
+    }, []);
+
     const handleViewDetail = (article: ArticleInterface) => {
         navigate(`/blog/${article.id}`, { state: { article } });
     };
 
     return (
         <>
-            {
-                articles.length > 0 ? (
+            {loading ? (
+                // Skeleton Loader
+                <div className="flex justify-center items-center mt-22 mb-24">
+                    <div className="max-w-sm bg-gray-50 shadow-lg p-4">
+                        <Skeleton height={300} width={350} className="mb-4" />
+                        <Skeleton count={3} />
+                    </div>
+                </div>
+            ) : articles.length > 0 ? (
                     <div className="blogs-container">
                         {articles?.map((article: ArticleInterface, index: number) => (
                             <div
