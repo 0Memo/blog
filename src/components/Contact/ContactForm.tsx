@@ -9,6 +9,8 @@ import { ImUser, ImQuestion, ImPencil } from "react-icons/im";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { addDoc, collection } from 'firebase/firestore';
+import { db } from '../../firebase-config';
 
 interface ContactFormProp {
     handleSubmitContactForm: (contactForm: ContactFormInterface) => void;
@@ -45,18 +47,28 @@ export default function ContactForm(props: ContactFormProp) {
             date: "",
         },
         validationSchema: getValidationSchema(),
-        onSubmit: (values) => {
-        handleSubmitContactForm({
-            ...values,
-            id: uuidv4(),
-            date: getDate(),
-        });
-        formik.resetForm();
-        navigate("/");
+        onSubmit: async (values) => {
+            const updatedValues = {
+                ...values,
+                id: uuidv4(),
+                date: getDate(),
+            };
+    
+            // Save to Firestore
+            await addDoc(collection(db, "messages"), {
+                name: updatedValues.name,
+                topic: updatedValues.topic,
+                message: updatedValues.message,
+                date: updatedValues.date,
+            });
+
+            handleSubmitContactForm(updatedValues);
+    
+            formik.resetForm();
+            navigate("/");
         },
     });
 
-    // Function to handle the date formatting
     const getDate = (): string => {
         const today = new Date();
         const month = (today.getMonth() + 1).toString().padStart(2, "0");
@@ -138,7 +150,10 @@ export default function ContactForm(props: ContactFormProp) {
                         name="date"
                         value={formik.values.date}
                     />
-                    <Button className="button" type="submit">
+                    <Button
+                        className="button"
+                        type="submit"
+                    >
                         <div className="hover:before:bg-transparent hover:before:border-2 hover:before:border-violet-900 before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-violet-900 relative flex gap-2 p-1 mt-2">
                         <span className="relative text-white m-1 send">
                             {t("contactForm.send")}

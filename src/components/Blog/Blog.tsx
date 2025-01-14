@@ -58,7 +58,7 @@ export default function Blog(props: BlogProp) {
                                     <div className="text-md sm:text-lg tracking-tight text-gray-700 flex flex-col justify-between h-full">
                                         <h3 className="font-h3 text-lg font-semibold mb-2">
                                             <p>
-                                                {article.title} : {article.authorName} — 
+                                                {article.title} {/*:  {article.authorName} */} — 
                                                 {article.date}
                                             </p>
                                         </h3>

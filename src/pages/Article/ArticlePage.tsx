@@ -8,11 +8,13 @@ import { v4 as uuidv4 } from "uuid";
 import { MdAddToPhotos } from "react-icons/md";
 import { TbFileDescription } from "react-icons/tb";
 import { PiArticleNyTimesDuotone } from "react-icons/pi";
-import { CiPen } from "react-icons/ci";
+// import { CiPen } from "react-icons/ci";
 import './Article.css';
 import { useTranslation } from "react-i18next";
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from "react";
+import { addDoc, collection } from 'firebase/firestore';
+import { db, auth } from '../../firebase-config';
 
 interface ArticleProp {
     handleSubmitArticle: (article:ArticleInterface) => void;
@@ -42,7 +44,7 @@ export default function ArticlePage(props:ArticleProp){
 
     const formik = useFormik({
         initialValues: {
-            authorName: "",
+            // authorName: "",
             title: "",
             description: "",
             date: ""
@@ -77,6 +79,28 @@ export default function ArticlePage(props:ArticleProp){
         formik.resetForm();
     }, [i18n.language]);
 
+    const articlesCollectionRef = collection(db, 'articles');
+
+    const createArticle = async () => {
+        const newArticle: ArticleInterface = {
+            id: uuidv4(),
+            title: formik.values.title,
+            description: formik.values.description,
+            date: getDate(),
+        };
+    
+        await addDoc(articlesCollectionRef, {
+            ...newArticle,
+            author: {
+                name: auth.currentUser?.displayName || 'Anonymous',
+                id: auth.currentUser?.uid || 'unknown',
+            }
+        });
+    
+        handleSubmitArticle(newArticle); // Pass it to parent to update state
+        navigate('/#articleTitle');
+    };
+
     return(
         <>
 
@@ -84,7 +108,7 @@ export default function ArticlePage(props:ArticleProp){
                 <Card className="w-96 bg-gray-50">
                     <form id="articleForm" onSubmit={formik.handleSubmit} className="flex flex-col gap-3">
                         <h1 className="text-4xl text-center mb-8 font-h1 text-purple-900">{t("article.add")}</h1>            
-                        <TextInput
+                        {/* <TextInput
                             id="authorName"
                             type="text"
                             name="authorName"
@@ -98,7 +122,7 @@ export default function ArticlePage(props:ArticleProp){
                                 <span className="font-medium text-red-500">{formik.errors.authorName}</span>
                                 </>
                             }
-                        />
+                        /> */}
                         <TextInput
                             id="title"
                             type="text"
@@ -142,6 +166,7 @@ export default function ArticlePage(props:ArticleProp){
                         <Button
                             className="button"
                             type="submit"
+                            onClick={ createArticle }
                         >
                             <div className='hover:before:bg-transparent hover:before:border-2 hover:before:border-violet-900 before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-violet-900 relative flex gap-2 p-1 mt-2'>
                                 <span className="relative text-white m-1 send transition duration-500 ease-in-out">

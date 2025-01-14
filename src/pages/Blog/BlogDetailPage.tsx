@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useEffect, useState } from "react";
+import { auth } from "../../firebase-config";
 
 export default function BlogDetailPage(){
     const { t } = useTranslation();
@@ -25,7 +26,7 @@ export default function BlogDetailPage(){
         return <div className='italic text-center text-red-600 text-xl'>Erreur: article non trouvé!</div>;
     }
 
-    const { authorName, title, description, date } = state.article;
+    const { title, description, date } = state.article;
 
 
     return(
@@ -49,7 +50,7 @@ export default function BlogDetailPage(){
                                     {t("blog.from")}
                                     <strong className="ml-2 text-violet-900 border-b-4 border-violet-900"
                                     >
-                                        {authorName}
+                                        { auth.currentUser?.displayName }
                                     </strong>
                                 </h3>
                                 <br />

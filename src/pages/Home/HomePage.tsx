@@ -7,6 +7,7 @@ import { Card } from "flowbite-react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useTranslation } from "react-i18next";
+import { auth } from "../../firebase-config";
 
 /* import moment from "moment";
 import 'moment/locale/fr'; */
@@ -22,6 +23,16 @@ export default function HomePage(props:HomePageProp){
 
     const articles = props.articles;
 
+    const [loadingArticles, setLoadingArticles] = useState(true);
+
+    useEffect(() => {
+        // Simulate async data fetching for articles
+        const timer = setTimeout(() => {
+            setLoadingArticles(false);
+        }, 1000);
+        return () => clearTimeout(timer);
+    }, []);
+
     const reversedArticles = articles.slice().reverse();
     const newestArticle = reversedArticles[0];
 
@@ -30,12 +41,12 @@ export default function HomePage(props:HomePageProp){
         return storedValues ? JSON.parse(storedValues) : [];
     });
 
-    const [loading, setLoading] = useState(true);
+    // const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         // Simulate loading for skeleton demo
         const timer = setTimeout(() => {
-        setLoading(false);
+        setLoadingArticles(false);
         }, 1500); // Adjust the timeout as needed
         return () => clearTimeout(timer);
     }, []);
@@ -89,7 +100,7 @@ export default function HomePage(props:HomePageProp){
                     <ContactForm handleSubmitContactForm={handleSubmitContactForm} />
             </div>
             
-            {loading ? (
+            {loadingArticles ? (
                 // Skeleton Loader
                 <div className="flex justify-center items-center mt-20 mb-24">
                     <div className="max-w-sm bg-gray-50 shadow-lg p-4">
@@ -110,7 +121,7 @@ export default function HomePage(props:HomePageProp){
                                 horizontal
                             >                                
                                 <div className="articleText text-slate-900" id="articleTitle">
-                                    <h3 className="text-lg">{t("main.lastArticle.authorName")} <strong  className="font-h3 text-violet-900 ">{newestArticle.authorName}</strong> </h3>
+                                    <h3 className="text-lg">{t("main.lastArticle.authorName")}  <strong  className="font-h3 text-violet-900 "> {auth.currentUser?.displayName} </strong>  </h3>
                                     <h3><span>{t("main.lastArticle.articleTitle")}</span> {newestArticle.title}</h3>
                                     <h3><span>{t("main.lastArticle.articleDescription")}</span> {newestArticle.description}</h3>
                                     <p className="mt-2"><i>{newestArticle.date}</i></p>
