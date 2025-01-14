@@ -79,11 +79,11 @@ export default function ArticlePage(props:ArticleProp){
 
     return(
         <>
-            <h1 className="text-4xl text-center mb-8 font-h1">{t("article.add")}</h1>            
 
             <div className="flex justify-center items-center">
                 <Card className="w-96 bg-gray-50">
                     <form id="articleForm" onSubmit={formik.handleSubmit} className="flex flex-col gap-3">
+                        <h1 className="text-4xl text-center mb-8 font-h1 text-purple-900">{t("article.add")}</h1>            
                         <TextInput
                             id="authorName"
                             type="text"
