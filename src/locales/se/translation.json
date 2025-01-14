@@ -1,4 +1,8 @@
 {
+    "login": {
+        "signIn": "Logga in",
+        "button": "Logga in med Google"
+    },
     "navbar": {
         "homepage": "Hem",
         "blog": "Blogg",

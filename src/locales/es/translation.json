@@ -1,4 +1,8 @@
 {
+    "login": {
+        "signIn": "Inicia sesión",
+        "button": "Inicia sesión con Google"
+    },
     "navbar": {
         "homepage": "Página principal",
         "blog": "Blog",

@@ -1,4 +1,8 @@
 {
+    "login": {
+        "signIn": "Մուտք գործել",
+        "button": "Մուտք գործել Google-ով"
+    },
     "navbar": {
         "homepage": "Գլխավոր էջ",
         "blog": "Բլոգ",

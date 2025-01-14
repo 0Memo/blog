@@ -1,4 +1,8 @@
 {
+    "login": {
+        "signIn": "Autentifică-te",
+        "button": "Autentifică-te cu Google"
+    },
     "navbar": {
         "homepage": "Pagina principală",
         "blog": "Blog",

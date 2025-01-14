@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import ContactForm from "../../components/Contact/ContactFormCopy";
+import ContactForm from "../../components/Contact/ContactForm";
 import Inbox from "../../components/Inbox/Inbox";
 import { ContactFormInterface } from "../../services/interfaces/ContactForm";
 import { ArticleInterface } from "../../services/interfaces/Article";

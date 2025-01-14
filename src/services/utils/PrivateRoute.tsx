@@ -1,7 +1,15 @@
-import { Outlet, Navigate} from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 
-export default function PrivateRoute(){
-    const auth = { token: true};
-
-    return auth.token? <Outlet /> : <Navigate to="/" /> //? <Outlet /> est un composant qui correspond à toutes les routes excepté la page d'accueil "/"
+interface PrivateRouteProps {
+    isAuth: boolean;
 }
+
+const PrivateRoute: React.FC<PrivateRouteProps> = ({ isAuth }) => {
+    if (!isAuth) {
+        return <Navigate to="/login" replace />;
+    }
+
+    return <Outlet />;
+};
+
+export default PrivateRoute;
