@@ -14,11 +14,20 @@ const InboxDetailPage = lazy(() => import('./components/Inbox/InboxDetailPage'))
 const BlogDetailPage = lazy(() => import('./pages/Blog/BlogDetailPage'));
 
 function App() {
-  const [isAuth, setIsAuth] = useState<boolean>(() => localStorage.getItem('isAuth') === 'true');
+  // Load isAuth from localStorage on initialization
+  const [isAuth, setIsAuth] = useState<boolean>(() => {
+    const storedAuth = localStorage.getItem('isAuth');
+    return storedAuth === 'true'; // Ensures boolean conversion
+  });
+
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    localStorage.setItem('isAuth', JSON.stringify(isAuth));
-  }, [isAuth]);
+    // Simulate an authentication validation (you can replace this with an API call)
+    const storedAuth = localStorage.getItem('isAuth') === 'true';
+    setIsAuth(storedAuth);
+    setIsLoading(false);
+  }, []);
 
   const [articles, setArticles] = useState<ArticleInterface[]>(() => {
     const storedValues = localStorage.getItem('articleItem');
@@ -32,6 +41,11 @@ function App() {
 
   function handleSubmitArticle(article: ArticleInterface): void {
     setArticles([...articles, article]);
+  }
+
+  // Show a loading spinner while checking authentication
+  if (isLoading) {
+    return <div>Loading...</div>;
   }
 
   return (
@@ -67,7 +81,7 @@ function App() {
             path="/blog"
             element={
               <Suspense fallback={<div>Loading...</div>}>
-                <BlogPage articles={articles} />
+                <BlogPage />
               </Suspense>
             }
           />
