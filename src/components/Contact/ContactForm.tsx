@@ -90,81 +90,81 @@ export default function ContactForm(props: ContactFormProp) {
         <>
         <div className="mt-8 sm:mt-0">
             <div className="flex justify-center items-center">
-            <Card className="w-96 bg-gray-50 shadow-lg">
-                <form id="contactForm" onSubmit={formik.handleSubmit}>
-                    <h1 className="text-2xl text-center mb-5 font-h1 text-purple-900">{t("contactForm.ContactUs")}</h1>
-                    <TextInput
-                        id="name"
-                        type="text"
-                        name="name"
-                        sizing="sm"
-                        className="font-input"
-                        placeholder={t("contactForm.name")}
-                        onChange={formik.handleChange}
-                        value={formik.values.name}
-                        icon={ImUser}
-                        helperText={
-                        <>
-                            <span className="font-medium text-red-500">{formik.errors.name}</span>
-                        </>
-                        }
-                    />
-                    <TextInput
-                        id="topic"
-                        type="text"
-                        name="topic"
-                        sizing="sm"
-                        className="font-input"
-                        placeholder={t("contactForm.topic")}
-                        onChange={formik.handleChange}
-                        value={formik.values.topic}
-                        icon={ImQuestion}
-                        helperText={
-                        <>
-                            <span className="font-medium text-red-500">{formik.errors.topic}</span>
-                        </>
-                        }
-                    />
-                    <div className="relative">
-                        <Textarea
-                        id="message"
-                        name="message"
-                        className="font-input pl-10"
-                        placeholder={t("contactForm.message")}
-                        onChange={formik.handleChange}
-                        value={formik.values.message}
-                        rows={4}
-                        helperText={
+                <Card className="w-96 bg-gray-50 shadow-lg">
+                    <form id="contactForm" onSubmit={formik.handleSubmit}>
+                        <h1 className="text-2xl text-center mb-5 font-h1 text-purple-900">{t("contactForm.ContactUs")}</h1>
+                        <TextInput
+                            id="name"
+                            type="text"
+                            name="name"
+                            sizing="sm"
+                            className="font-input"
+                            placeholder={t("contactForm.name")}
+                            onChange={formik.handleChange}
+                            value={formik.values.name}
+                            icon={ImUser}
+                            helperText={
                             <>
-                            <span className="font-medium text-red-500">{formik.errors.message}</span>
+                                <span className="font-medium text-red-500">{formik.errors.name}</span>
                             </>
-                        }
+                            }
                         />
-                        <div className="absolute left-2 top-2 text-gray-500">
-                        <ImPencil className="text-2xl" />
+                        <TextInput
+                            id="topic"
+                            type="text"
+                            name="topic"
+                            sizing="sm"
+                            className="font-input"
+                            placeholder={t("contactForm.topic")}
+                            onChange={formik.handleChange}
+                            value={formik.values.topic}
+                            icon={ImQuestion}
+                            helperText={
+                            <>
+                                <span className="font-medium text-red-500">{formik.errors.topic}</span>
+                            </>
+                            }
+                        />
+                        <div className="relative">
+                            <Textarea
+                            id="message"
+                            name="message"
+                            className="font-input pl-10"
+                            placeholder={t("contactForm.message")}
+                            onChange={formik.handleChange}
+                            value={formik.values.message}
+                            rows={4}
+                            helperText={
+                                <>
+                                <span className="font-medium text-red-500">{formik.errors.message}</span>
+                                </>
+                            }
+                            />
+                            <div className="absolute left-2 top-2 text-gray-500">
+                            <ImPencil className="text-2xl" />
+                            </div>
                         </div>
-                    </div>
-                    <TextInput
-                        type="hidden"
-                        id="date"
-                        name="date"
-                        value={formik.values.date}
-                    />
-                    <Button
-                        className="button"
-                        type="submit"
-                    >
-                        <div className="hover:before:bg-transparent hover:before:border-2 hover:before:border-violet-900 before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-violet-900 relative flex gap-2 p-1 mt-2">
-                        <span className="relative text-white m-1 send">
-                            {t("contactForm.send")}
-                        </span>
-                        <span className="relative text-white m-1 envelop">
-                            <IoIosSend className="ml-2 scale-150" />
-                        </span>
-                        </div>
-                    </Button>
-                </form>
-            </Card>
+                        <TextInput
+                            type="hidden"
+                            id="date"
+                            name="date"
+                            value={formik.values.date}
+                        />
+                        <Button
+                            className="button"
+                            type="submit"
+                        >
+                            <div className="hover:before:bg-transparent hover:before:border-2 hover:before:border-violet-900 before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-violet-900 relative flex gap-2 p-1 mt-2">
+                            <span className="relative text-white m-1 send">
+                                {t("contactForm.send")}
+                            </span>
+                            <span className="relative text-white m-1 envelop">
+                                <IoIosSend className="ml-2 scale-150" />
+                            </span>
+                            </div>
+                        </Button>
+                    </form>
+                </Card>
             </div>
         </div>
         </>

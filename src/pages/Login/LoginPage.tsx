@@ -4,6 +4,7 @@ import './LoginPage.css';
 import { useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import {  auth, provider } from '../../firebase-config';
+import { Card } from "flowbite-react";
 import { signInWithPopup } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import Skeleton from "react-loading-skeleton";
@@ -47,7 +48,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ setIsAuth }) => {
         <>
             { loading ? (
                 // Skeleton Loader
-                <div className="flex justify-center items-center mt-30 mb-24">
+                <div className="flex justify-center items-center mt-72 sm:mt-64 mb-24">
                     <div className="max-w-sm bg-gray-50 shadow-lg p-4">
                         <Skeleton height={250} width={300} className="mb-4" />
                         <Skeleton count={0} />
@@ -55,15 +56,17 @@ const LoginPage: React.FC<LoginPageProps> = ({ setIsAuth }) => {
                 </div>
             ) : (
                 <>
-                    <div className="loginPage">
-                        <p className='mb-32'>{t('login.signIn')}</p>
-                    
-                        <button
-                            className="login-with-google-btn"
-                            onClick={ signInWithGoogle }
-                        >
-                            {t('login.button')}
-                        </button>
+                    <div className="loginPage h-screen flex items-center justify-center">
+                        <Card className="w-96 bg-gray-50 shadow-lg border border-2 border-beige-700">
+                            <p className='mb-32 text-3xl text-purple-900 text-center font-h1'>{t('login.signIn')}</p>
+                            
+                            <button
+                                className="login-with-google-btn"
+                                onClick={ signInWithGoogle }
+                            >
+                                {t('login.button')}
+                            </button>
+                        </Card>
                     </div>
                 </>
             )}
