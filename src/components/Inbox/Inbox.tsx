@@ -1,4 +1,4 @@
-//import { Link } from 'react-router-dom';
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button, Card } from 'flowbite-react';
 import { ContactFormInterface } from '../../services/interfaces/ContactForm';
 import { useNavigate } from 'react-router-dom';
@@ -8,18 +8,16 @@ import { useTranslation } from "react-i18next";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useEffect, useState } from "react";
+import { collection, onSnapshot, query, orderBy, doc, deleteDoc } from 'firebase/firestore';
+import { db } from '../../firebase-config';
+import { BsFillTrash2Fill } from 'react-icons/bs';
 
-interface InboxProp {
-    contactForms: ContactFormInterface[];
-}
-
-export default function Inbox(props:InboxProp){
+export default function Inbox(){
     const { t } = useTranslation();
 
     const navigate = useNavigate();
 
-    const contactForms = props.contactForms;
-
+    const [contactForms, setContactForms] = useState<ContactFormInterface[]>([]);
     const reversedContactForms = contactForms.slice().reverse();
 
     const [loading, setLoading] = useState(true);
@@ -31,6 +29,30 @@ export default function Inbox(props:InboxProp){
         }, 1500); // Adjust the timeout as needed
         return () => clearTimeout(timer);
     }, []);
+
+    useEffect(() => {
+        // Set up Firestore real-time listener
+        const messagesCollection = collection(db, "messages");
+        const q = query(messagesCollection, orderBy("date", "desc"));
+        
+        const unsubscribe = onSnapshot(q, (snapshot) => {
+            const messagesData = snapshot.docs.map((doc) => ({
+                id: doc.id,
+                ...doc.data(),
+            })) as ContactFormInterface[];
+            
+            setContactForms(messagesData);
+            setLoading(false);
+        });
+
+        // Cleanup listener on component unmount
+        return () => unsubscribe();
+    }, []);
+
+    const deleteMessage = async (id: any) => {
+            const articleDoc = doc(db, 'messages', id);
+            await deleteDoc(articleDoc);
+        }
 
     const handleViewDetail = (contactForm: ContactFormInterface) => {
         navigate(`/message/${contactForm.id}`, { state: { contactForm } });
@@ -54,8 +76,11 @@ export default function Inbox(props:InboxProp){
                             contactForms.length > 0 ? (
                                 <div className="cards-container">
                                     {
-                                        reversedContactForms.map((contactForm: ContactFormInterface) => (
-                                            <div className="flex justify-center items-center mb-4">
+                                        reversedContactForms.map((contactForm: ContactFormInterface, index: number) => (
+                                            <div
+                                                key={index}
+                                                className="flex justify-center items-center mb-4"
+                                            >
                                                 <Card
                                                     className="w-96 bg-gray-50 shadow-lg"
                                                     horizontal
@@ -79,6 +104,9 @@ export default function Inbox(props:InboxProp){
                                                                     </div>
                                                             </Button>
                                                         </div>
+                                                    </div>
+                                                    <div className="text-violet-900 self-end text-2xl hover:text-white hover:transition hover:delay-100 hover:duration-300 hover:ease-in-out hover:bg-violet-900 hover:rounded-full hover:cursor-pointer">
+                                                        <BsFillTrash2Fill onClick={() => { deleteMessage(contactForm.id )} } />
                                                     </div>
                                                 </Card>
                                             </div>

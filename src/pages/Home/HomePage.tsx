@@ -1,27 +1,22 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import ContactForm from "../../components/Contact/ContactForm";
 import Inbox from "../../components/Inbox/Inbox";
 import { ContactFormInterface } from "../../services/interfaces/ContactForm";
-import { ArticleInterface } from "../../services/interfaces/Article";
 import { Card } from "flowbite-react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useTranslation } from "react-i18next";
-import { auth } from "../../firebase-config";
+import { auth, db } from "../../firebase-config";
+import { BsFillTrash2Fill } from "react-icons/bs";
+import { collection, deleteDoc, doc, /* getDocs, */ onSnapshot } from "firebase/firestore";
+import { ArticleInterface } from "../../services/interfaces/Article";
 
-/* import moment from "moment";
-import 'moment/locale/fr'; */
-
-interface HomePageProp {
-    articles: ArticleInterface[];
-}
-
-export default function HomePage(props:HomePageProp){
+export default function HomePage({ isAuth } : any){
     const { t } = useTranslation();
     /* const m= moment().locale('fr').format('Do MMMM YYYY, h:mm:ss');
     console.log(m); */
-
-    const articles = props.articles;
 
     const [loadingArticles, setLoadingArticles] = useState(true);
 
@@ -33,15 +28,10 @@ export default function HomePage(props:HomePageProp){
         return () => clearTimeout(timer);
     }, []);
 
-    const reversedArticles = articles.slice().reverse();
-    const newestArticle = reversedArticles[0];
-
     const [contactForms, setContactForms] = useState<ContactFormInterface[]>(() => {
         const storedValues = localStorage.getItem("contactFormItem"); 
         return storedValues ? JSON.parse(storedValues) : [];
     });
-
-    // const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         // Simulate loading for skeleton demo
@@ -50,29 +40,6 @@ export default function HomePage(props:HomePageProp){
         }, 1500); // Adjust the timeout as needed
         return () => clearTimeout(timer);
     }, []);
-
-    useEffect(() => {
-        localStorage.setItem("contactFormItem", JSON.stringify(contactForms));
-        }, [contactForms])
-
-        const storesContactForms = () => {
-        const storedValues = localStorage.getItem("contactFormItem");
-        if(!storedValues) { 
-            setContactForms(contactForms)
-            return articles; 
-        }
-        
-            return JSON.parse(storedValues);
-    };
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    useEffect(() => { storesContactForms()}, []);
-    
-    useEffect(() => {
-        if(!contactForms) return;
-        storesContactForms();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [contactForms]);
 
     useEffect(() => {
         // Check for hash in the URL
@@ -89,6 +56,32 @@ export default function HomePage(props:HomePageProp){
         setContactForms([ ...contactForms,  contactForm]);
     }
 
+    const [ articleList, setArticleList ] = useState<ArticleInterface[]>([]);
+    console.log('articleList', articleList)
+    const articlesCollectionRef = collection(db, 'articles');
+
+    useEffect(() => {
+        const unsubscribe = onSnapshot(articlesCollectionRef, (snapshot) => {
+            setArticleList(
+                snapshot.docs.map((doc) => ({
+                    ...doc.data() as ArticleInterface,
+                    id: doc.id,
+                }))
+            );
+        });
+    
+        // Clean up the listener on component unmount
+        return () => unsubscribe();
+    }, []);
+
+    const reversedArticles = articleList.slice().reverse();
+    const newestArticle = reversedArticles[0];
+
+    const deleteArticle = async (id: any) => {
+        const articleDoc = doc(db, 'articles', id);
+        await deleteDoc(articleDoc);
+    }
+
     return(
         <>
             <h1 className="text-4xl text-center mb-24 sm:mb-8 font-h1">{t("main.title")}</h1>
@@ -96,7 +89,7 @@ export default function HomePage(props:HomePageProp){
             {/* <p>{m}</p> */}
 
             <div className="flex flex-col sm:flex-row justify-evenly m-0">
-                    <Inbox contactForms={contactForms} />
+                    <Inbox />
                     <ContactForm handleSubmitContactForm={handleSubmitContactForm} />
             </div>
             
@@ -121,12 +114,18 @@ export default function HomePage(props:HomePageProp){
                                 horizontal
                             >                                
                                 <div className="articleText text-slate-900" id="articleTitle">
-                                    <h3 className="text-lg">{t("main.lastArticle.authorName")}  <strong  className="font-h3 text-violet-900 "> {auth.currentUser?.displayName} </strong>  </h3>
+                                    <h3 className="text-lg">{t("main.lastArticle.authorName")}  <strong  className="font-h3 text-violet-900 "> {auth.currentUser?.displayName} </strong></h3>
                                     <h3><span>{t("main.lastArticle.articleTitle")}</span> {newestArticle.title}</h3>
                                     <h3><span>{t("main.lastArticle.articleDescription")}</span> {newestArticle.description}</h3>
                                     <p className="mt-2"><i>{newestArticle.date}</i></p>
                                 </div>
-                                <br />
+                                {
+                                    isAuth && newestArticle.author.id === auth.currentUser?.uid && (
+                                        <div className="text-violet-900 self-end text-2xl hover:text-white hover:transition hover:delay-100 hover:duration-300 hover:ease-in-out hover:bg-violet-900 hover:rounded-full hover:cursor-pointer">
+                                            <BsFillTrash2Fill onClick={() => { deleteArticle(newestArticle.id )} } />
+                                        </div>
+                                    )
+                                }
                             </Card>
                         </div>
                     </div>

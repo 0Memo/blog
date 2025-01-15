@@ -47,7 +47,11 @@ export default function ArticlePage(props:ArticleProp){
             // authorName: "",
             title: "",
             description: "",
-            date: ""
+            date: "",
+            author: {
+                name: '',
+                id: ''
+            }
         },
         validationSchema: getValidationSchema(),
         onSubmit: (values) => {
@@ -56,6 +60,12 @@ export default function ArticlePage(props:ArticleProp){
                     ...values,
                     id: uuidv4(),
                     date: getDate(),
+                    title: '',
+                    description: '',
+                    author: {
+                        name: undefined,
+                        id: undefined
+                    }
                 });
             formik.resetForm();
             navigate('/#articleTitle');
@@ -87,6 +97,10 @@ export default function ArticlePage(props:ArticleProp){
             title: formik.values.title,
             description: formik.values.description,
             date: getDate(),
+            author: {
+                name: auth.currentUser?.displayName,
+                id: auth.currentUser?.uid
+            }
         };
     
         await addDoc(articlesCollectionRef, {
@@ -97,7 +111,7 @@ export default function ArticlePage(props:ArticleProp){
             }
         });
     
-        handleSubmitArticle(newArticle); // Pass it to parent to update state
+        handleSubmitArticle(newArticle);
         navigate('/#articleTitle');
     };
 

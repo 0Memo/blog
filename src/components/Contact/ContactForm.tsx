@@ -155,12 +155,12 @@ export default function ContactForm(props: ContactFormProp) {
                             type="submit"
                         >
                             <div className="hover:before:bg-transparent hover:before:border-2 hover:before:border-violet-900 before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-violet-900 relative flex gap-2 p-1 mt-2">
-                            <span className="relative text-white m-1 send">
-                                {t("contactForm.send")}
-                            </span>
-                            <span className="relative text-white m-1 envelop">
-                                <IoIosSend className="ml-2 scale-150" />
-                            </span>
+                                <span className="relative text-white m-1 send">
+                                    {t("contactForm.send")}
+                                </span>
+                                <span className="relative text-white m-1 envelop">
+                                    <IoIosSend className="ml-2 scale-150" />
+                                </span>
                             </div>
                         </Button>
                     </form>

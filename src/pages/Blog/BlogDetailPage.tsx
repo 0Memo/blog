@@ -27,7 +27,7 @@ export default function BlogDetailPage(){
     }
 
     const { title, description, date } = state.article;
-
+    
 
     return(
         <>

@@ -11,11 +11,7 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useEffect, useState } from 'react';
 
-interface LoginPageProps {
-    setIsAuth: (isAuth: boolean) => void;
-}
-
-const LoginPage: React.FC<LoginPageProps> = ({ setIsAuth }) => {
+const LoginPage = ({ setIsAuth }: any) => {
     const { t } = useTranslation();
     const { state } = useLocation();
     console.log(state);
@@ -24,13 +20,16 @@ const LoginPage: React.FC<LoginPageProps> = ({ setIsAuth }) => {
 
     const signInWithGoogle = async () => {
         try {
-            const result = await signInWithPopup(auth, provider);
-            console.log('result', result);
-            localStorage.setItem('isAuth', JSON.stringify(true)); 
-            setIsAuth(true);
-            navigate('/');
+        const result = await signInWithPopup(auth, provider);
+        console.log('result', result);
+    
+        // Persist the login status
+        localStorage.setItem('isAuth', 'true');
+        setIsAuth(true);
+    
+        navigate('/');
         } catch (error) {
-            console.error("Error signing in with Google:", error);
+        console.error('Error signing in with Google:', error);
         }
     };
 

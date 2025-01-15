@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { ArticleInterface } from "../../services/interfaces/Article";
 import { Button, Card } from "flowbite-react";
@@ -8,15 +10,14 @@ import { TbSquareRoundedPlus } from "react-icons/tb";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useEffect, useState } from "react";
+import { collection, deleteDoc, doc, onSnapshot } from "firebase/firestore";
+import { db } from "../../firebase-config";
+import { BsFillTrash2Fill } from "react-icons/bs";
 
-interface BlogProp {
-    articles: ArticleInterface[];
-}
-
-export default function Blog(props: BlogProp) {
+export default function Blog() {
     const { t } = useTranslation();
     const navigate = useNavigate();
-    const articles = props.articles.slice().reverse();
+    // const articles = props.articles.slice().reverse();
 
     const [loading, setLoading] = useState(true);
         
@@ -27,6 +28,29 @@ export default function Blog(props: BlogProp) {
         }, 1500); // Adjust the timeout as needed
         return () => clearTimeout(timer);
     }, []);
+
+    const [ articleList, setArticleList ] = useState<ArticleInterface[]>([]);
+    console.log('articleList', articleList)
+    const articlesCollectionRef = collection(db, 'articles');
+
+    useEffect(() => {
+        const unsubscribe = onSnapshot(articlesCollectionRef, (snapshot) => {
+            setArticleList(
+                snapshot.docs.map((doc) => ({
+                    ...doc.data() as ArticleInterface,
+                    id: doc.id,
+                }))
+            );
+        });
+    
+        // Clean up the listener on component unmount
+        return () => unsubscribe();
+    }, []);
+
+    const deleteArticle = async (id: any) => {
+        const articleDoc = doc(db, 'articles', id);
+        await deleteDoc(articleDoc);
+    }
 
     const handleViewDetail = (article: ArticleInterface) => {
         navigate(`/blog/${article.id}`, { state: { article } });
@@ -42,12 +66,12 @@ export default function Blog(props: BlogProp) {
                         <Skeleton count={3} />
                     </div>
                 </div>
-            ) : articles.length > 0 ? (
+            ) : articleList.length > 0 ? (
                     <div className="blogs-container">
-                        {articles?.map((article: ArticleInterface, index: number) => (
+                        {articleList?.slice().reverse().map((article: ArticleInterface, index: number) => (
                             <div
-                            key={index}
-                            className="flex flex-col sm:w-auto w-full sm:h-50 justify-center items-center mb-20 sm:mb-20 mx-4"
+                                key={index}
+                                className="flex flex-col sm:w-auto w-full sm:h-50 justify-center items-center mb-20 sm:mb-20 mx-4"
                             >
                                 <Card
                                     className="w-full h-full bg-gray-50 shadow-lg flex flex-col justify-between ojbect-none object-center"
@@ -79,6 +103,9 @@ export default function Blog(props: BlogProp) {
                                                     </span>
                                                 </div>
                                         </Button>
+                                    </div>
+                                    <div className="text-violet-900 self-end text-2xl hover:text-white hover:transition hover:delay-100 hover:duration-300 hover:ease-in-out hover:bg-violet-900 hover:rounded-full hover:cursor-pointer">
+                                        <BsFillTrash2Fill onClick={() => { deleteArticle(article.id )} } />
                                     </div>
                                 </Card>
                             </div>
