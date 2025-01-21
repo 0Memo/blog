@@ -55,7 +55,7 @@ function App() {
         <Route
           path="/login"
           element={
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<div className="italic text-3xl ml-10 font-h1">Loading...</div>}>
               <LoginPage setIsAuth={setIsAuth} />
             </Suspense>
           }
@@ -64,7 +64,7 @@ function App() {
           <Route
             path="/"
             element={
-              <Suspense fallback={<div>Loading...</div>}>
+              <Suspense fallback={<div className="italic text-3xl ml-10 font-h1">Loading...</div>}>
                 <HomePage isAuth={isAuth} />
               </Suspense>
             }
@@ -72,7 +72,7 @@ function App() {
           <Route
             path="/message/:id"
             element={
-              <Suspense fallback={<div>Loading...</div>}>
+              <Suspense fallback={<div className="italic text-3xl ml-10 font-h1">Loading...</div>}>
                 <InboxDetailPage />
               </Suspense>
             }
@@ -80,7 +80,7 @@ function App() {
           <Route
             path="/blog"
             element={
-              <Suspense fallback={<div>Loading...</div>}>
+              <Suspense fallback={<div className="italic text-3xl ml-10 font-h1">Loading...</div>}>
                 <BlogPage />
               </Suspense>
             }
@@ -88,7 +88,7 @@ function App() {
           <Route
             path="/blog/:id"
             element={
-              <Suspense fallback={<div>Loading...</div>}>
+              <Suspense fallback={<div className="italic text-3xl ml-10 font-h1">Loading...</div>}>
                 <BlogDetailPage />
               </Suspense>
             }
@@ -96,7 +96,7 @@ function App() {
           <Route
             path="/article"
             element={
-              <Suspense fallback={<div>Loading...</div>}>
+              <Suspense fallback={<div className="italic text-3xl ml-10 font-h1">Loading...</div>}>
                 <ArticlePage handleSubmitArticle={handleSubmitArticle} />
               </Suspense>
             }
@@ -105,7 +105,7 @@ function App() {
         <Route
           path="*"
           element={
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<div className="italic text-3xl ml-10 font-h1">Loading...</div>}>
               <NotFoundPage />
             </Suspense>
           }
