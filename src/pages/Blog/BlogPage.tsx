@@ -10,7 +10,7 @@ export default function BlogPage(){
     return(
         <>
             <h1 className="text-4xl text-center mb-8 font-h1">{t("blog.list")}</h1>
-            <br />
+            
             <div className='flex flex-wrap justify-center'>
                 <Blog  />
             </div>

@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import { Navbar } from "flowbite-react";
-import { Link, Navigate} from 'react-router-dom';
+import { Link, /* Navigate */} from 'react-router-dom';
 import { useTranslation } from "react-i18next";
 import ReactCountryFlag from 'react-country-flag';
 import { useEffect, useState } from "react";
@@ -10,7 +10,11 @@ import { useNavigate } from 'react-router-dom';
 import {  auth } from '../../firebase-config';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 
-export default function NavbarComponent(){
+interface NavbarComponentProps {
+    currentPath: string; // Define the prop type
+}
+
+export default function NavbarComponent({ currentPath }: NavbarComponentProps) {
     const [ isAuth, setIsAuth ] = useState(false);
     const { t, i18n } = useTranslation();
 
@@ -50,12 +54,11 @@ export default function NavbarComponent(){
         });
     }
 
-    if (!isAuth) {
-        return <Navigate to="/login" />;
-    }
+
 
     return(
         <>
+            <p className="hidden">{currentPath}</p>
             <div className="flex flex-col items-center mt-4 mb-40 sm:mb-20 font-navbar">
                 <Navbar fluid rounded className="bg-transparent mb-5 relative h-12 sm:h-auto w-12 sm:w-auto">
                     <Navbar.Toggle className="absolute active:bg-transparent focus:bg-transparent focus:outline-none focus:ring-0 active:ring-0 border-none shadow-none left-0 top-0 h-16 sm:h-auto w-16 sm:w-auto" />                    

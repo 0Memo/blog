@@ -1,5 +1,5 @@
-import { Route, Routes } from 'react-router-dom';
-import { Suspense, lazy, useState, useEffect } from 'react';
+import { Route, Routes, useLocation } from 'react-router-dom';
+import { Suspense, lazy, useState, useEffect, createContext, useContext } from 'react';
 import NavbarComponent from './components/Navbar/NavbarComponent';
 import FooterComponent from './components/Footer/FooterComponent';
 import PrivateRoute from './services/utils/PrivateRoute';
@@ -13,21 +13,29 @@ const BlogPage = lazy(() => import('./pages/Blog/BlogPage'));
 const InboxDetailPage = lazy(() => import('./components/Inbox/InboxDetailPage'));
 const BlogDetailPage = lazy(() => import('./pages/Blog/BlogDetailPage'));
 
+// Context for authentication
+const AuthContext = createContext<{ isAuth: boolean; setIsAuth: (value: boolean) => void } | null>(null);
+
+// Hook to use authentication context
+const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (!context) throw new Error('useAuth must be used within AuthContextProvider');
+  return context;
+};
+
+console.log('useAuth', useAuth);
+
 function App() {
-  // Load isAuth from localStorage on initialization
+  const location = useLocation(); // Tracks the current route
+
+  // Authentication State and Synchronization
   const [isAuth, setIsAuth] = useState<boolean>(() => {
-    const storedAuth = localStorage.getItem('isAuth');
-    return storedAuth === 'true'; // Ensures boolean conversion
+    return localStorage.getItem('isAuth') === 'true';
   });
 
-  const [isLoading, setIsLoading] = useState(true);
-
   useEffect(() => {
-    // Simulate an authentication validation (you can replace this with an API call)
-    const storedAuth = localStorage.getItem('isAuth') === 'true';
-    setIsAuth(storedAuth);
-    setIsLoading(false);
-  }, []);
+    localStorage.setItem('isAuth', String(isAuth));
+  }, [isAuth]);
 
   const [articles, setArticles] = useState<ArticleInterface[]>(() => {
     const storedValues = localStorage.getItem('articleItem');
@@ -43,14 +51,9 @@ function App() {
     setArticles([...articles, article]);
   }
 
-  // Show a loading spinner while checking authentication
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
   return (
-    <>
-      {isAuth && <NavbarComponent />}
+    <AuthContext.Provider value={{ isAuth, setIsAuth }}>
+      {isAuth && <NavbarComponent currentPath={location.pathname} />}
       <Routes>
         <Route
           path="/login"
@@ -112,7 +115,7 @@ function App() {
         />
       </Routes>
       <FooterComponent />
-    </>
+    </AuthContext.Provider>
   );
 }
 
