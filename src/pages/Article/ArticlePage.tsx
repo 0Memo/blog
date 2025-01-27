@@ -28,10 +28,6 @@ export default function ArticlePage(props:ArticleProp){
     // Create a dynamic validation schema based on the language
     const getValidationSchema = () => {
         return Yup.object({
-            authorName: Yup.string()
-                .min(3, `${t('article.errors.minimum')}`)
-                .max(25, `${t('article.errors.maximum')}`)
-                .required(`${t('article.errors.authorName')}`),
             title: Yup.string()
                 .min(3, `${t('article.errors.minimum')}`)
                 .max(25, `${t('article.errors.maximum')}`)
@@ -44,7 +40,6 @@ export default function ArticlePage(props:ArticleProp){
 
     const formik = useFormik({
         initialValues: {
-            // authorName: "",
             title: "",
             description: "",
             date: "",
@@ -54,19 +49,20 @@ export default function ArticlePage(props:ArticleProp){
             }
         },
         validationSchema: getValidationSchema(),
-        onSubmit: (values) => {
-            handleSubmitArticle(
-                {
-                    ...values,
-                    id: uuidv4(),
-                    date: getDate(),
-                    title: '',
-                    description: '',
-                    author: {
-                        name: undefined,
-                        id: undefined
-                    }
-                });
+        onSubmit: async (values) => {
+            if (!formik.isValid) return;
+            const newArticle: ArticleInterface = {
+                id: uuidv4(),
+                title: values.title,
+                description: values.description,
+                date: getDate(),
+                author: {
+                    name: auth.currentUser?.displayName || 'Anonymous',
+                    id: auth.currentUser?.uid || 'unknown',
+                },
+            };
+            await addDoc(collection(db, 'articles'), newArticle)
+            handleSubmitArticle(newArticle);
             formik.resetForm();
             navigate('/#articleTitle');
         },
@@ -89,54 +85,13 @@ export default function ArticlePage(props:ArticleProp){
         formik.resetForm();
     }, [i18n.language]);
 
-    const articlesCollectionRef = collection(db, 'articles');
-
-    const createArticle = async () => {
-        const newArticle: ArticleInterface = {
-            id: uuidv4(),
-            title: formik.values.title,
-            description: formik.values.description,
-            date: getDate(),
-            author: {
-                name: auth.currentUser?.displayName,
-                id: auth.currentUser?.uid
-            }
-        };
-    
-        await addDoc(articlesCollectionRef, {
-            ...newArticle,
-            author: {
-                name: auth.currentUser?.displayName || 'Anonymous',
-                id: auth.currentUser?.uid || 'unknown',
-            }
-        });
-    
-        handleSubmitArticle(newArticle);
-        navigate('/#articleTitle');
-    };
-
     return(
         <>
 
             <div className="flex justify-center items-center">
                 <Card className="w-96 bg-gray-50">
                     <form id="articleForm" onSubmit={formik.handleSubmit} className="flex flex-col gap-3">
-                        <h1 className="text-4xl text-center mb-8 font-h1 text-purple-900">{t("article.add")}</h1>            
-                        {/* <TextInput
-                            id="authorName"
-                            type="text"
-                            name="authorName"
-                            className="font-input"
-                            placeholder={t("article.authorName")}
-                            onChange={formik.handleChange}
-                            value={ formik.values.authorName }
-                            icon={CiPen}
-                            helperText={
-                                <>
-                                <span className="font-medium text-red-500">{formik.errors.authorName}</span>
-                                </>
-                            }
-                        /> */}
+                        <h1 className="text-4xl text-center mb-8 font-h1 text-purple-900">{t("article.add")}</h1>
                         <TextInput
                             id="title"
                             type="text"
@@ -180,7 +135,6 @@ export default function ArticlePage(props:ArticleProp){
                         <Button
                             className="button"
                             type="submit"
-                            onClick={ createArticle }
                         >
                             <div className='hover:before:bg-transparent hover:before:border-2 hover:before:border-violet-900 before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-violet-900 relative flex gap-2 p-1 mt-2'>
                                 <span className="relative text-white m-1 send transition duration-500 ease-in-out">
