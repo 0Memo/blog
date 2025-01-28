@@ -62,20 +62,47 @@ export default function HomePage({ isAuth } : any){
 
     useEffect(() => {
         const unsubscribe = onSnapshot(articlesCollectionRef, (snapshot) => {
-            setArticleList(
-                snapshot.docs.map((doc) => ({
-                    ...doc.data() as ArticleInterface,
-                    id: doc.id,
-                }))
-            );
+            const fetchedArticles = snapshot.docs.map((doc) => ({
+                ...doc.data() as ArticleInterface,
+                id: doc.id,
+            }));
+    
+            // Debugging: Check the raw article dates
+            console.log("Fetched Articles (Raw):", fetchedArticles);
+    
+            // Sort articles by date in descending order
+            const sortedArticles = fetchedArticles.sort((a, b) => {
+                const dateA = parseDate(a.date); // Parse a.date
+                const dateB = parseDate(b.date); // Parse b.date
+    
+                // Debugging: Check parsed dates
+                console.log("Parsed Date A:", dateA, "Parsed Date B:", dateB);
+    
+                return dateB.getTime() - dateA.getTime(); // Compare timestamps
+            });
+    
+            setArticleList(sortedArticles);
         });
     
         // Clean up the listener on component unmount
         return () => unsubscribe();
     }, []);
+    
+    // Helper function to parse date
+    const parseDate = (dateString: string): Date => {
+        try {
+            // Replace non-standard "h" with ":" for time parsing, if present
+            const normalizedDate = dateString.replace("h", ":");
+    
+            // Convert to a JavaScript Date object
+            return new Date(normalizedDate);
+        } catch (error) {
+            console.error("Error parsing date:", dateString, error);
+            return new Date(); // Fallback to current date if parsing fails
+        }
+    };
 
-    const reversedArticles = articleList.slice().reverse();
-    const newestArticle = reversedArticles[0];
+    const newestArticle = articleList[0];
 
     const deleteArticle = async (id: any) => {
         const articleDoc = doc(db, 'articles', id);

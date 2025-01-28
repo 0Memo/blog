@@ -18,7 +18,7 @@ export default function Inbox(){
     const navigate = useNavigate();
 
     const [contactForms, setContactForms] = useState<ContactFormInterface[]>([]);
-    const reversedContactForms = contactForms.slice().reverse();
+    const reversedContactForms = contactForms.slice();
 
     const [loading, setLoading] = useState(true);
     

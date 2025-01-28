@@ -35,17 +35,45 @@ export default function Blog() {
 
     useEffect(() => {
         const unsubscribe = onSnapshot(articlesCollectionRef, (snapshot) => {
-            setArticleList(
-                snapshot.docs.map((doc) => ({
-                    ...doc.data() as ArticleInterface,
-                    id: doc.id,
-                }))
-            );
+            const fetchedArticles = snapshot.docs.map((doc) => ({
+                ...doc.data() as ArticleInterface,
+                id: doc.id,
+            }));
+    
+            // Debugging: Check the raw article dates
+            console.log("Fetched Articles (Raw):", fetchedArticles);
+    
+            // Sort articles by date in descending order
+            const sortedArticles = fetchedArticles.sort((a, b) => {
+                const dateA = parseDate(a.date); // Parse a.date
+                const dateB = parseDate(b.date); // Parse b.date
+    
+                // Debugging: Check parsed dates
+                console.log("Parsed Date A:", dateA, "Parsed Date B:", dateB);
+    
+                return dateB.getTime() - dateA.getTime(); // Compare timestamps
+            });
+    
+            setArticleList(sortedArticles);
         });
     
         // Clean up the listener on component unmount
         return () => unsubscribe();
     }, []);
+    
+    // Helper function to parse date
+    const parseDate = (dateString: string): Date => {
+        try {
+            // Replace non-standard "h" with ":" for time parsing, if present
+            const normalizedDate = dateString.replace("h", ":");
+    
+            // Convert to a JavaScript Date object
+            return new Date(normalizedDate);
+        } catch (error) {
+            console.error("Error parsing date:", dateString, error);
+            return new Date(); // Fallback to current date if parsing fails
+        }
+    };
 
     const deleteArticle = async (id: any) => {
         const articleDoc = doc(db, 'articles', id);
@@ -68,13 +96,13 @@ export default function Blog() {
                 </div>
             ) : articleList.length > 0 ? (
                     <div className="blogs-container">
-                        {articleList?.slice().reverse().map((article: ArticleInterface, index: number) => (
+                        {articleList?.map((article: ArticleInterface, index: number) => (
                             <div
                                 key={index}
-                                className="flex flex-col sm:w-auto w-full sm:h-50 justify-center items-center mb-20 sm:mb-20 mx-4"
+                                className="flex flex-col sm:w-auto w-full sm:h-50 justify-center items-center mb-20 sm:mb-20 mx-0 sm:mx-4"
                             >
                                 <Card
-                                    className="w-full h-full bg-gray-50 shadow-lg flex flex-col justify-between ojbect-none object-center"
+                                    className="w-full h-full bg-gray-50 shadow-lg flex flex-col ojbect-none object-center"
                                     imgAlt="Placeholder"
                                     imgSrc="https://craftypixels.com/placeholder-image/150x150/2e1065/fff&text=Placeholder"
                                     horizontal
@@ -82,8 +110,7 @@ export default function Blog() {
                                     <div className="text-md sm:text-lg tracking-tight text-gray-700 flex flex-col justify-between h-full">
                                         <h3 className="font-h3 text-lg font-semibold mb-2">
                                             <p>
-                                                {article.title} {/*:  {article.authorName} */} — 
-                                                {article.date}
+                                                {article.title} — {article.date}
                                             </p>
                                         </h3>
                                         <p className="font-h3 text-base text-gray-600 mb-4">
