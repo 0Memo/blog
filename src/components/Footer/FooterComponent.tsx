@@ -14,7 +14,7 @@ export default function FooterComponent() {
                     <div className="w-full bg-violet-900 py-4 flex items-center justify-between">
                         <Footer.Copyright
                             by={t("footer.text")}
-                            year={2025}
+                            year={2026}
                             className="ml-auto mr-1 text-sm sm:text-lg text-white font-footer"
                         />
                         <ReactCountryFlag
